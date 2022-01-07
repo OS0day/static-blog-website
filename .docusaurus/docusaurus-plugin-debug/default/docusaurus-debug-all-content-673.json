@@ -14,9 +14,9 @@
           "versionClassName": "docs-version-current",
           "isLast": true,
           "routePriority": -1,
-          "sidebarFilePath": "C:\\Users\\HeroCat\\Desktop\\guide\\sidebars.js",
-          "contentPath": "C:\\Users\\HeroCat\\Desktop\\guide\\docs",
-          "contentPathLocalized": "C:\\Users\\HeroCat\\Desktop\\guide\\i18n\\en\\docusaurus-plugin-content-docs\\current",
+          "sidebarFilePath": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\KnowledgeAndBlog\\static-blog-website\\sidebars.js",
+          "contentPath": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\KnowledgeAndBlog\\static-blog-website\\docs",
+          "contentPathLocalized": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\KnowledgeAndBlog\\static-blog-website\\i18n\\en\\docusaurus-plugin-content-docs\\current",
           "mainDocId": "intro",
           "sidebars": {
             "tutorialSidebar": [

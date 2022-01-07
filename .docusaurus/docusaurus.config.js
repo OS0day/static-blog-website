@@ -13,7 +13,7 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "sidebarPath": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\static-blog-website\\KnowledgeAndBlog\\sidebars.js",
+          "sidebarPath": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\KnowledgeAndBlog\\static-blog-website\\sidebars.js",
           "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/"
         },
         "blog": {
@@ -21,7 +21,7 @@ export default {
           "editUrl": "https://github.com/facebook/docusaurus/edit/main/website/blog/"
         },
         "theme": {
-          "customCss": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\static-blog-website\\KnowledgeAndBlog\\src\\css\\custom.css"
+          "customCss": "G:\\IT成长知识库\\AA_大学期间接手的项目\\Gitee_demo仓库集合\\KnowledgeAndBlog\\static-blog-website\\src\\css\\custom.css"
         }
       }
     ]

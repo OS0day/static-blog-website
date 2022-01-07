@@ -16,7 +16,7 @@ jobs:
     - name: Build and Deploy
       uses: OS0day/static-blog-website@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.STATIC_BLOG_WEBSITE }}
         BRANCH: gh-pages
         FOLDER: build
         BUILD_SCRIPT: npm install && npm run build

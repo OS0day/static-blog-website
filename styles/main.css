@@ -657,7 +657,7 @@
   content: "";
   position: absolute;
   top: 0;
-  left: 8px;
+  left: 30%;
   bottom: 0;
   width: 1px;
   background-color: #ebedef;
@@ -665,20 +665,24 @@
 }
 .post-toc ul {
   list-style: none;
+  width: auto;
 }
 .post-toc li {
-  padding-left: 16px;
+  padding-left: -100%;
+  width: auto;
 }
 .post-toc li a {
   padding: 4px;
   display: block;
   transition: all 0.3s;
+  width: auto;
 }
 .post-toc li a:hover {
   border-radius: 5px;
   color: #2d96bd;
   font-size: larger;
   background: #33333333;
+  width: auto;
 }
 .post-toc li a:hover,
 .post-toc li a .dark-theme {
@@ -686,12 +690,14 @@
   color: #2d96bd;
   font-size: larger;
   background: #ffffff33;
+  width: auto;
 }
 .post-toc li a.current {
   color: #2d96bd;
   border-radius: 5px;
   font-size: larger;
   background: #33333333;
+  width: auto;
 }
 .post-toc li a.current,
 .post-toc li a .dark-theme {
@@ -699,6 +705,7 @@
   border-radius: 5px;
   font-size: larger;
   background: #ffffff33;
+  width: auto;
 }
 @media screen and (max-width: 780px) {
   .Like {

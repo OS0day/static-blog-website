@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://os0day.github.io/static-blog-website</id>
     <title>猫咪</title>
-    <updated>2022-01-08T17:45:18.372Z</updated>
+    <updated>2022-01-09T14:18:52.190Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://os0day.github.io/static-blog-website"/>
     <link rel="self" href="https://os0day.github.io/static-blog-website/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://os0day.github.io/static-blog-website/images/avatar.png</logo>
     <icon>https://os0day.github.io/static-blog-website/favicon.ico</icon>
     <rights>All rights reserved 2022, 猫咪</rights>
+    <entry>
+        <title type="html"><![CDATA[GO之基础语法的学习一]]></title>
+        <id>https://os0day.github.io/static-blog-website/post/goStudy001/</id>
+        <link href="https://os0day.github.io/static-blog-website/post/goStudy001/">
+        </link>
+        <updated>2022-01-09T08:12:45.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2021年终总结]]></title>
         <id>https://os0day.github.io/static-blog-website/post/2021-summary/</id>

@@ -393,12 +393,12 @@ input[type="radio"]:not(:checked)+label:after {
 }
 
 .dark-theme .navbar .menu .active {
-    color: #fff;
+    color: #6867AC;
 }
 
 .navbar-header a:hover,
 .navbar .menu a:hover {
-    background-color: transparent;
+    background-color: #6867AC;
 }
 
 header label {

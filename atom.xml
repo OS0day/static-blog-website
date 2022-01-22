@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://os0day.github.io/static-blog-website</id>
+    <id>https://blog.os0day.cn</id>
     <title>OS0day</title>
-    <updated>2022-01-13T14:03:40.174Z</updated>
+    <updated>2022-01-22T16:46:21.282Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://os0day.github.io/static-blog-website"/>
-    <link rel="self" href="https://os0day.github.io/static-blog-website/atom.xml"/>
+    <link rel="alternate" href="https://blog.os0day.cn"/>
+    <link rel="self" href="https://blog.os0day.cn/atom.xml"/>
     <subtitle>&lt;strong&gt;欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！&lt;/strong&gt;</subtitle>
-    <logo>https://os0day.github.io/static-blog-website/images/avatar.png</logo>
-    <icon>https://os0day.github.io/static-blog-website/favicon.ico</icon>
+    <logo>https://blog.os0day.cn/images/avatar.png</logo>
+    <icon>https://blog.os0day.cn/favicon.ico</icon>
     <rights>All rights reserved 2022, OS0day</rights>
     <entry>
+        <title type="html"><![CDATA[提高执行的学习之剖析个人问题和思考提高执行力的方法]]></title>
+        <id>https://blog.os0day.cn/post/execution001/</id>
+        <link href="https://blog.os0day.cn/post/execution001/">
+        </link>
+        <updated>2022-01-22T16:04:10.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[GO之基础语法的学习一]]></title>
-        <id>https://os0day.github.io/static-blog-website/post/goStudy001/</id>
-        <link href="https://os0day.github.io/static-blog-website/post/goStudy001/">
+        <id>https://blog.os0day.cn/post/goStudy001/</id>
+        <link href="https://blog.os0day.cn/post/goStudy001/">
         </link>
         <updated>2022-01-09T08:12:45.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[2021年终总结]]></title>
-        <id>https://os0day.github.io/static-blog-website/post/2021-summary/</id>
-        <link href="https://os0day.github.io/static-blog-website/post/2021-summary/">
+        <id>https://blog.os0day.cn/post/2021-summary/</id>
+        <link href="https://blog.os0day.cn/post/2021-summary/">
         </link>
         <updated>2022-01-08T15:09:04.000Z</updated>
     </entry>

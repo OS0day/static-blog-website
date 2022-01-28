@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.os0day.cn</id>
+    <id>http://localhost:4000</id>
     <title>OS0day</title>
-    <updated>2022-01-28T16:22:37.223Z</updated>
+    <updated>2022-01-28T16:33:45.624Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://blog.os0day.cn"/>
-    <link rel="self" href="https://blog.os0day.cn/atom.xml"/>
+    <link rel="alternate" href="http://localhost:4000"/>
+    <link rel="self" href="http://localhost:4000/atom.xml"/>
     <subtitle>&lt;strong&gt;欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！&lt;/strong&gt;</subtitle>
-    <logo>https://blog.os0day.cn/images/avatar.png</logo>
-    <icon>https://blog.os0day.cn/favicon.ico</icon>
+    <logo>http://localhost:4000/images/avatar.png</logo>
+    <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2022, OS0day</rights>
     <entry>
         <title type="html"><![CDATA[SQL之SQLServer存储过程简单样例(Updating)]]></title>
-        <id>https://blog.os0day.cn/post/sql-zhi-sqlserver-cun-chu-guo-cheng-jian-dan-yang-li-updating/</id>
-        <link href="https://blog.os0day.cn/post/sql-zhi-sqlserver-cun-chu-guo-cheng-jian-dan-yang-li-updating/">
+        <id>http://localhost:4000/post/sql001/</id>
+        <link href="http://localhost:4000/post/sql001/">
         </link>
         <updated>2022-01-28T16:17:22.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[提高执行力的学习之剖析个人问题和思考提高执行力的方法]]></title>
-        <id>https://blog.os0day.cn/post/execution001/</id>
-        <link href="https://blog.os0day.cn/post/execution001/">
+        <id>http://localhost:4000/post/execution001/</id>
+        <link href="http://localhost:4000/post/execution001/">
         </link>
         <updated>2022-01-22T16:04:10.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[GO之基础语法的学习一]]></title>
-        <id>https://blog.os0day.cn/post/goStudy001/</id>
-        <link href="https://blog.os0day.cn/post/goStudy001/">
+        <id>http://localhost:4000/post/goStudy001/</id>
+        <link href="http://localhost:4000/post/goStudy001/">
         </link>
         <updated>2022-01-09T08:12:45.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[2021年终总结]]></title>
-        <id>https://blog.os0day.cn/post/2021-summary/</id>
-        <link href="https://blog.os0day.cn/post/2021-summary/">
+        <id>http://localhost:4000/post/2021-summary/</id>
+        <link href="http://localhost:4000/post/2021-summary/">
         </link>
         <updated>2022-01-08T15:09:04.000Z</updated>
     </entry>

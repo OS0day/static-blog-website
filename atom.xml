@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.os0day.cn</id>
     <title>OS0day</title>
-    <updated>2022-01-28T14:25:09.488Z</updated>
+    <updated>2022-01-28T16:22:37.223Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.os0day.cn"/>
     <link rel="self" href="https://blog.os0day.cn/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://blog.os0day.cn/images/avatar.png</logo>
     <icon>https://blog.os0day.cn/favicon.ico</icon>
     <rights>All rights reserved 2022, OS0day</rights>
+    <entry>
+        <title type="html"><![CDATA[SQL之SQLServer存储过程简单样例(Updating)]]></title>
+        <id>https://blog.os0day.cn/post/sql-zhi-sqlserver-cun-chu-guo-cheng-jian-dan-yang-li-updating/</id>
+        <link href="https://blog.os0day.cn/post/sql-zhi-sqlserver-cun-chu-guo-cheng-jian-dan-yang-li-updating/">
+        </link>
+        <updated>2022-01-28T16:17:22.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[提高执行力的学习之剖析个人问题和思考提高执行力的方法]]></title>
         <id>https://blog.os0day.cn/post/execution001/</id>

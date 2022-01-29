@@ -168,291 +168,35 @@
     }
 </script>
 
-        <div class="main">
-            <div class="container">
-                <article class="post-wrap">
-                    <header class="post-header">
-                        <h1 class="post-title">
-                            SQL之SQLServer存储过程简单样例(Updating)
-                        </h1>
+            <div class="main">
+                <div class="container">
+                    <div class="post-wrap archive">
                         
-                        <!--zh-->
-                        <div class="post-meta zh">
-                            &#x4F5C;&#x8005;:
-                            <a itemprop="author" rel="author" href="/">
-                                OS0day
-                            </a>
-                            <span class="post-time">&#x65E5;&#x671F;: <a href="#">2022-01-29</a></span>
-                            <span class="post-readtime">&#x9605;&#x8BFB;&#x65F6;&#x95F4;:<a
-                                    href="#">3.8
-                                    &#x5206;&#x949F;</a></span>
-                            <span class="post-words">&#x5B57;&#x6570;:<a href="#">753</a></span>
                             
-                            <span class="post-category">&#x5206;&#x7C7B;:
+                                <h3>
+                                    2022
+                                </h3>
                                 
-                                <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">SQL</a>
-                                
-                            </span>
-                            
-                            阅读量:
-                            <span data-hk-page="current"> - </span>
-                            
-                        </div>
-                        
-                        </header>
-                        
-                        <div class="post-content">
-                            <pre><code class="language-SQL">--带参存储过程  
-if (object_id('proc_find_stu', 'P') is not null)  
-    drop proc proc_find_stu  
-go  
-create proc proc_find_stu(@startId int, @endId int)  
-as  
-    select * from student where id between @startId and @endId  
-go  
-  
-exec proc_find_stu 2, 4;
-</code></pre>
-<pre><code class="language-sql">--创建存储过程  
-if (exists (select * from sys.objects where name = 'proc_get_student'))  
-    drop proc proc_get_student  
-go  
-create proc proc_get_student  
-as  
-    select * from student;  
-  
---调用、执行存储过程  
-exec proc_get_student;
-</code></pre>
-<pre><code class="language-SQL">--带通配符参数存储过程  
-if (object_id('proc_findStudentByName', 'P') is not null)  
-    drop proc proc_findStudentByName  
-go  
-create proc proc_findStudentByName(@name varchar(20) = '%j%', @nextName varchar(20) = '%')  
-as  
-    select * from student where name like @name and name like @nextName;  
-go  
-  
-exec proc_findStudentByName;  
-exec proc_findStudentByName '%o%', 't%';
-</code></pre>
-<pre><code class="language-SQl">-- 输出参数的存储过程
-if (object_id('proc_getStudentRecord', 'P') is not null)  
-    drop proc proc_getStudentRecord  
-go  
-create proc proc_getStudentRecord(  
-    @id int, --默认输入参数  
-    @name varchar(20) out, --输出参数  
-    @age varchar(20) output--输入输出参数  
-)  
-as  
-    select @name = name, @age = age  from student where id = @id and sex = @age;  
-go  
-  
---   
-declare @id int,  
-        @name varchar(20),  
-        @temp varchar(20);  
-set @id = 7;   
-set @temp = 1;  
-exec proc_getStudentRecord @id, @name out, @temp output;  
-select @name, @temp;  
-print @name + '#' + @temp;
-</code></pre>
-<pre><code class="language-sql">-- 不缓存的存储过程
---WITH RECOMPILE 不缓存  
-if (object_id('proc_temp', 'P') is not null)  
-    drop proc proc_temp  
-go  
-create proc proc_temp  
-with recompile  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp;
-</code></pre>
-<pre><code class="language-sql">--加密WITH ENCRYPTION   
-if (object_id('proc_temp_encryption', 'P') is not null)  
-    drop proc proc_temp_encryption  
-go  
-create proc proc_temp_encryption  
-with encryption  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp_encryption;  
-exec sp_helptext 'proc_temp';  
-exec sp_helptext 'proc_temp_encryption';
-</code></pre>
-<blockquote>
-<p>在前面介绍游标的例子中，SELECT语句都没有WHERE子句，或者用WHERE子句指定了一个固定的条件，这样每次都查询同样的数据。在更多的情况下，可能要根据实际情况查询不同的数据。为了通过游标对数据进行更加灵活的处理，可以为游标定义参数，这些参数可以用在WHERE子句中。在打开游标时，指定实际的参数值，这样游标在每次打开时，可以根据不同的实际参数值，返回所需的不同数据。</p>
-</blockquote>
-<pre><code class="language-sql">-- 带游标参数的存储过程
-if (object_id('proc_cursor', 'P') is not null)  
-    drop proc proc_cursor  
-go  
-create proc proc_cursor  
-    @cur cursor varying output  
-as  
-    set @cur = cursor forward_only static for  
-    select id, name, age from student;  
-    open @cur;  
-go  
---调用  
-declare @exec_cur cursor;  
-declare @id int,  
-        @name varchar(20),  
-        @age int;  
-exec proc_cursor @cur = @exec_cur output;--调用存储过程  
-fetch next from @exec_cur into @id, @name, @age;  
-while (@@fetch_status = 0)  
-begin  
-    fetch next from @exec_cur into @id, @name, @age;  
-    print 'id: ' + convert(varchar, @id) + ', name: ' + @name + ', age: ' + convert(char, @age);  
-end  
-close @exec_cur;  
-deallocate @exec_cur;--删除游标
-</code></pre>
-<pre><code class="language-sql">---存储过程、row_number完成分页  
-if (object_id('pro_page', 'P') is not null)  
-	drop proc proc_cursor  
-go  
-create proc pro_page  
-    @startIndex int,  
-    @endIndex int  
-as  
-    select count(*) from product  
-;      
-    select * from (  
-        select row_number() over(order by pid) as rowId, * from product   
-    ) temp  
-    where temp.rowId between @startIndex and @endIndex  
-go  
-drop proc pro_page  
-exec pro_page 1, 4  
---  
---分页存储过程  
-if (object_id('pro_page', 'P') is not null)  
-    drop proc pro_stu  
-go  
-create procedure pro_stu(  
-    @pageIndex int,  
-    @pageSize int  
-)  
-as  
-    declare @startRow int, @endRow int  
-    set @startRow = (@pageIndex - 1) * @pageSize +1  
-    set @endRow = @startRow + @pageSize -1  
-    select * from (  
-        select *, row_number() over (order by id asc) as number from student   
-    ) t  
-    where t.number between @startRow and @endRow;  
-  
-exec pro_stu 2, 2;
+                                    
 
-</code></pre>
-<blockquote>
-<p>SQL Server 修改存储过程<br>
-如果需要修改现有的存储过程，只需更换掉 CREATE ，使用 ALTER。<br>
-我们在 “Latest” 和 “Tasks”间添加一个空格（即“Latest Tasks”），并添加描述字段，如下</p>
-</blockquote>
-<pre><code class="language-sql">ALTER PROCEDURE LatestTasks @Count int 
-AS 
-SET ROWCOUNT @Count 
-SELECT TaskName AS &quot;Latest Tasks&quot;, Description, DateCreated FROM Tasks 
-ORDER BY DateCreated DESC
-</code></pre>
-
-                        </div>
-                        
-                        <div class="post-toc">
-                            
-                        </div>
-                        
-                                
-                        
-                        <!--zh-->
-                        <section class="post-copyright zh">
-                            <p class="copyright-item ">
-                                <span>&#x4F5C;&#x8005;:</span>
-                                <span>OS0day</span>
-                            </p>
-
-                            <p class="copyright-item">
-                                <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
-                                <span><a href="https://blog.os0day.cn/post/sql001/">https://blog.os0day.cn/post/sql001/</a></span>
-                            </p>
-
-                            <!-- <p class="copyright-item">
-                                <span>&#x534F;&#x8BAE;:</span>
-                                <span>MIT License</span>
-                            </p> -->
-                        </section>
-                        
+                                        <article class="archive-item">
+                                            <a class="archive-item-link" href="https://blog.os0day.cn/post/gridea001/">
+                                                关于Gridea同步失败的解决方案（亲测目前有效）
+                                            </a>
+                                            <span class="archive-item-date">2022-01-29 </span>
+                                        </article>
+                                        
+                                            
                                                 
+                    </div>
+                    <div class="pagination-container">
                         
-    <!--Share-->
-    <!-- <span style="margin-right:15px">
-        <i class="post-share"></i>
-        <span>&#x5206;&#x4EAB;:</span>
-        <a title="QR 码" target="_blank"
-            href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.os0day.cn/post/sql001/"><i
-                class="fa fa-qrcode"></i></a>
-        <a title="QQ" target="_blank"
-            href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.os0day.cn/post/sql001/&sharesource=qzone&title=SQL之SQLServer存储过程简单样例(Updating)&pics=https://blog.os0day.cn/images/avatar.png?v=1643431392967&summary="><i
-                class="fa fa-qq"></i></a>
-        <a title="新浪微博" target="_blank"
-            href="https://service.weibo.com/share/share.php?url=https://blog.os0day.cn/post/sql001/&sharesource=weibo&title=SQL之SQLServer存储过程简单样例(Updating) + "
-            - " + &pic="
-            https://blog.os0day.cn/images/avatar.png?v=1643431392967 "><i class=" fa fa-weibo "></i></a>
-
-                                                                    </span> -->
-                                                                    
-                                                                            <!--zh-->
-                                                                            <section class="post-tags zh ">
-                                                                                <div>
-                                                                                    <span>&#x6807;&#x7B7E;:</span>
-                                                                                    <span class="tag ">
-                        
-    
-    <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">#
-        SQL
-    </a>
-    
-    
-    </span>
-    </div>
-    <div>
-        <a href="javascript:window.history.back();">
-            &#x8FD4;&#x56DE;</a>
-        <!-- <span>&dot;</span>
-        <a href="#">&#x4E3B;&#x9875;</a> -->
-    </div>
-    </section>
-
-    
-                                                                                <!---->
-                                                                                <section class="post-nav">
-                                                                                    
-    <a class="prev" rel="prev" href="https://blog.os0day.cn/post/gridea001/">
-        关于Gridea同步失败的解决方案（亲测目前有效）
-    </a>
-    
-    
-    <a class="next" rel="next" href="https://blog.os0day.cn/post/execution001/">
-        提高执行力的学习之剖析个人问题和思考提高执行力的方法
-    </a>
-    
-    </section>
-    </article>
-    </div>
-    
-    
-    </div>
-    </div>
-    </div>
+                            
+                                    
+                                            
+                    </div>
+                </div>
+            </div>
     </div>
     
         <footer id="footer" class="footer">
@@ -515,10 +259,7 @@ ORDER BY DateCreated DESC
                     console.log(" Blog Update Time: " + newDate.toLocaleDateString());
                     console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;");
                 </script>
-    </div>
+        </div>
 </body>
-<script>
-    scroll();
-</script>
 
 </html>

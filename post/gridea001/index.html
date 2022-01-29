@@ -173,7 +173,7 @@
                 <article class="post-wrap">
                     <header class="post-header">
                         <h1 class="post-title">
-                            SQL之SQLServer存储过程简单样例(Updating)
+                            关于Gridea同步失败的解决方案（亲测目前有效）
                         </h1>
                         
                         <!--zh-->
@@ -184,13 +184,13 @@
                             </a>
                             <span class="post-time">&#x65E5;&#x671F;: <a href="#">2022-01-29</a></span>
                             <span class="post-readtime">&#x9605;&#x8BFB;&#x65F6;&#x95F4;:<a
-                                    href="#">3.8
+                                    href="#">2.1
                                     &#x5206;&#x949F;</a></span>
-                            <span class="post-words">&#x5B57;&#x6570;:<a href="#">753</a></span>
+                            <span class="post-words">&#x5B57;&#x6570;:<a href="#">578</a></span>
                             
                             <span class="post-category">&#x5206;&#x7C7B;:
                                 
-                                <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">SQL</a>
+                                <a href="https://blog.os0day.cn/tag/5URhJX4EA/">Gridea</a>
                                 
                             </span>
                             
@@ -202,173 +202,77 @@
                         </header>
                         
                         <div class="post-content">
-                            <pre><code class="language-SQL">--带参存储过程  
-if (object_id('proc_find_stu', 'P') is not null)  
-    drop proc proc_find_stu  
-go  
-create proc proc_find_stu(@startId int, @endId int)  
-as  
-    select * from student where id between @startId and @endId  
-go  
-  
-exec proc_find_stu 2, 4;
-</code></pre>
-<pre><code class="language-sql">--创建存储过程  
-if (exists (select * from sys.objects where name = 'proc_get_student'))  
-    drop proc proc_get_student  
-go  
-create proc proc_get_student  
-as  
-    select * from student;  
-  
---调用、执行存储过程  
-exec proc_get_student;
-</code></pre>
-<pre><code class="language-SQL">--带通配符参数存储过程  
-if (object_id('proc_findStudentByName', 'P') is not null)  
-    drop proc proc_findStudentByName  
-go  
-create proc proc_findStudentByName(@name varchar(20) = '%j%', @nextName varchar(20) = '%')  
-as  
-    select * from student where name like @name and name like @nextName;  
-go  
-  
-exec proc_findStudentByName;  
-exec proc_findStudentByName '%o%', 't%';
-</code></pre>
-<pre><code class="language-SQl">-- 输出参数的存储过程
-if (object_id('proc_getStudentRecord', 'P') is not null)  
-    drop proc proc_getStudentRecord  
-go  
-create proc proc_getStudentRecord(  
-    @id int, --默认输入参数  
-    @name varchar(20) out, --输出参数  
-    @age varchar(20) output--输入输出参数  
-)  
-as  
-    select @name = name, @age = age  from student where id = @id and sex = @age;  
-go  
-  
---   
-declare @id int,  
-        @name varchar(20),  
-        @temp varchar(20);  
-set @id = 7;   
-set @temp = 1;  
-exec proc_getStudentRecord @id, @name out, @temp output;  
-select @name, @temp;  
-print @name + '#' + @temp;
-</code></pre>
-<pre><code class="language-sql">-- 不缓存的存储过程
---WITH RECOMPILE 不缓存  
-if (object_id('proc_temp', 'P') is not null)  
-    drop proc proc_temp  
-go  
-create proc proc_temp  
-with recompile  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp;
-</code></pre>
-<pre><code class="language-sql">--加密WITH ENCRYPTION   
-if (object_id('proc_temp_encryption', 'P') is not null)  
-    drop proc proc_temp_encryption  
-go  
-create proc proc_temp_encryption  
-with encryption  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp_encryption;  
-exec sp_helptext 'proc_temp';  
-exec sp_helptext 'proc_temp_encryption';
-</code></pre>
+                            <h1 id="前言">前言</h1>
 <blockquote>
-<p>在前面介绍游标的例子中，SELECT语句都没有WHERE子句，或者用WHERE子句指定了一个固定的条件，这样每次都查询同样的数据。在更多的情况下，可能要根据实际情况查询不同的数据。为了通过游标对数据进行更加灵活的处理，可以为游标定义参数，这些参数可以用在WHERE子句中。在打开游标时，指定实际的参数值，这样游标在每次打开时，可以根据不同的实际参数值，返回所需的不同数据。</p>
+<p>该文章转载自<a href="https://blog.gd1214b.icu/post/F2_C5EVQh/" title="解决Gridea同步失败的问题">https://blog.gd1214b.icu/post/F2_C5EVQh/</a></p>
 </blockquote>
-<pre><code class="language-sql">-- 带游标参数的存储过程
-if (object_id('proc_cursor', 'P') is not null)  
-    drop proc proc_cursor  
-go  
-create proc proc_cursor  
-    @cur cursor varying output  
-as  
-    set @cur = cursor forward_only static for  
-    select id, name, age from student;  
-    open @cur;  
-go  
---调用  
-declare @exec_cur cursor;  
-declare @id int,  
-        @name varchar(20),  
-        @age int;  
-exec proc_cursor @cur = @exec_cur output;--调用存储过程  
-fetch next from @exec_cur into @id, @name, @age;  
-while (@@fetch_status = 0)  
-begin  
-    fetch next from @exec_cur into @id, @name, @age;  
-    print 'id: ' + convert(varchar, @id) + ', name: ' + @name + ', age: ' + convert(char, @age);  
-end  
-close @exec_cur;  
-deallocate @exec_cur;--删除游标
-</code></pre>
-<pre><code class="language-sql">---存储过程、row_number完成分页  
-if (object_id('pro_page', 'P') is not null)  
-	drop proc proc_cursor  
-go  
-create proc pro_page  
-    @startIndex int,  
-    @endIndex int  
-as  
-    select count(*) from product  
-;      
-    select * from (  
-        select row_number() over(order by pid) as rowId, * from product   
-    ) temp  
-    where temp.rowId between @startIndex and @endIndex  
-go  
-drop proc pro_page  
-exec pro_page 1, 4  
---  
---分页存储过程  
-if (object_id('pro_page', 'P') is not null)  
-    drop proc pro_stu  
-go  
-create procedure pro_stu(  
-    @pageIndex int,  
-    @pageSize int  
-)  
-as  
-    declare @startRow int, @endRow int  
-    set @startRow = (@pageIndex - 1) * @pageSize +1  
-    set @endRow = @startRow + @pageSize -1  
-    select * from (  
-        select *, row_number() over (order by id asc) as number from student   
-    ) t  
-    where t.number between @startRow and @endRow;  
-  
-exec pro_stu 2, 2;
-
-</code></pre>
+<p>由于众所周知的原因，GitHub在中国大陆地区受到的干扰严重，大部分情况下根本无法连接，这也导致Gridea的同步失败问题。<br>
+<img src="https://blog.os0day.cn/post-images/1643430897854.png" alt="" loading="lazy"></p>
+<!-- more -->
+<h1 id="解决方案">解决方案</h1>
+<p>通常的解决方案是通过代理服务器连接，但由于大部分的代理软件（如v2rayN等），只能更改系统的代理设置，像Gridea这些不遵守系统代理设置的软件，无法通过代理服务器连接。<br>
+下面介绍一种本人亲测有效的方法, 这种方法的基本原理是用GitHub Desktop将Gridea生成的网页源代码手动push到GitHub上。</p>
+<h2 id="第一步-连接上代理">第一步 连接上代理</h2>
+<p><strong>有各种代理工具，有免费的也有自建的，或者，修改本地Host文件，等等，在此就不多赘述了。</strong></p>
+<h2 id="第二步-下载并安装github-desktop">第二步 下载并安装GitHub Desktop</h2>
+<p>下载地址：<br>
+<a href="https://central.github.com/deployments/desktop/desktop/latest/win32">https://central.GitHub.com/deployments/desktop/desktop/latest/win32</a><br>
+打开安装程序即可自动完成安装。</p>
+<h2 id="第三步-登陆github账号">第三步 登陆GitHub账号</h2>
+<ol>
+<li>点击 Sign into GitHub.com<br>
+<img src="https://blog.os0day.cn/post-images/1643430982642.jpg" alt="" loading="lazy"></li>
+<li>在浏览器里登陆你的GitHub账号<br>
+<img src="https://blog.os0day.cn/post-images/1643431000893.jpg" alt="" loading="lazy"></li>
+</ol>
+<h2 id="第四步-清空gridea-配置目录下ouput文件夹里的所有内容">第四步 清空Gridea 配置目录下ouput文件夹里的所有内容</h2>
 <blockquote>
-<p>SQL Server 修改存储过程<br>
-如果需要修改现有的存储过程，只需更换掉 CREATE ，使用 ALTER。<br>
-我们在 “Latest” 和 “Tasks”间添加一个空格（即“Latest Tasks”），并添加描述字段，如下</p>
+<p>需要清空ouput文件夹里的所有内容的原因是GitHub Desktop无法克隆仓库到非空文件夹中，这一步不会影响你的博客数据。</p>
 </blockquote>
-<pre><code class="language-sql">ALTER PROCEDURE LatestTasks @Count int 
-AS 
-SET ROWCOUNT @Count 
-SELECT TaskName AS &quot;Latest Tasks&quot;, Description, DateCreated FROM Tasks 
-ORDER BY DateCreated DESC
-</code></pre>
+<p><strong>注意output文件夹不要删除</strong><br>
+<img src="https://blog.os0day.cn/post-images/1643431024943.jpg" alt="" loading="lazy"></p>
+<h2 id="第五步-在github-desktop中克隆你的博客仓库">第五步 在GitHub Desktop中克隆你的博客仓库</h2>
+<p>[<img src="https://blog.os0day.cn/post-images/1623482247255.jpg" alt="" loading="lazy"><br>
+注意目录要选择Gridea 配置目录下ouput文件夹<br>
+<img src="https://blog.os0day.cn/post-images/1643431062342.jpg" alt="" loading="lazy"></p>
+<h2 id="第六步-同步gridea">第六步 同步Gridea</h2>
+<p>在Gridea中依次点击 远程 &gt; 检测远程连接 &gt; 同步<br>
+这一步无所谓是否同步成功.<br>
+<img src="https://blog.os0day.cn/post-images/1643431074592.jpg" alt="" loading="lazy"></p>
+<h2 id="第七步-同步到github上">第七步 同步到GitHub上</h2>
+<p>在GitHub Desktop 中点击 Pushu origin<br>
+<img src="https://blog.os0day.cn/post-images/1643431084387.jpg" alt="" loading="lazy"><br>
+等候完成即可。</p>
+<blockquote>
+<p>根据评论区中某匿名网友的提醒，有change files的话需要先点击左下角的Commit，才会出现第七步截图里的push origin。</p>
+</blockquote>
+<h1 id="其他说明">其他说明</h1>
+<p>此时你的博客应该已经同步到GitHub上了，如果有任何问题，欢迎在下方的评论区中提出。</p>
+<ul>
+<li><strong>本文作者：</strong> gd1214b</li>
+<li><strong>本文链接：</strong> <a href="https://blog.gd1214b.icu/post/F2_C5EVQh/" title="解决Gridea同步失败的问题">https://blog.gd1214b.icu/post/F2_C5EVQh/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
 
                         </div>
                         
                         <div class="post-toc">
-                            
+                            <ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E8%BF%9E%E6%8E%A5%E4%B8%8A%E4%BB%A3%E7%90%86">第一步 连接上代理</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85github-desktop">第二步 下载并安装GitHub Desktop</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E7%99%BB%E9%99%86github%E8%B4%A6%E5%8F%B7">第三步 登陆GitHub账号</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E6%B8%85%E7%A9%BAgridea-%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%8Bouput%E6%96%87%E4%BB%B6%E5%A4%B9%E9%87%8C%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9">第四步 清空Gridea 配置目录下ouput文件夹里的所有内容</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5-%E5%9C%A8github-desktop%E4%B8%AD%E5%85%8B%E9%9A%86%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BB%93%E5%BA%93">第五步 在GitHub Desktop中克隆你的博客仓库</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5-%E5%90%8C%E6%AD%A5gridea">第六步 同步Gridea</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5-%E5%90%8C%E6%AD%A5%E5%88%B0github%E4%B8%8A">第七步 同步到GitHub上</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">其他说明</a></li>
+</ul>
+
                         </div>
                         
                                 
@@ -382,7 +286,7 @@ ORDER BY DateCreated DESC
 
                             <p class="copyright-item">
                                 <span>&#x6C38;&#x4E45;&#x94FE;&#x63A5;:</span>
-                                <span><a href="https://blog.os0day.cn/post/sql001/">https://blog.os0day.cn/post/sql001/</a></span>
+                                <span><a href="https://blog.os0day.cn/post/gridea001/">https://blog.os0day.cn/post/gridea001/</a></span>
                             </p>
 
                             <!-- <p class="copyright-item">
@@ -398,14 +302,26 @@ ORDER BY DateCreated DESC
         <i class="post-share"></i>
         <span>&#x5206;&#x4EAB;:</span>
         <a title="QR 码" target="_blank"
-            href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.os0day.cn/post/sql001/"><i
+            href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://blog.os0day.cn/post/gridea001/"><i
                 class="fa fa-qrcode"></i></a>
         <a title="QQ" target="_blank"
-            href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.os0day.cn/post/sql001/&sharesource=qzone&title=SQL之SQLServer存储过程简单样例(Updating)&pics=https://blog.os0day.cn/images/avatar.png?v=1643431392967&summary="><i
+            href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://blog.os0day.cn/post/gridea001/&sharesource=qzone&title=关于Gridea同步失败的解决方案（亲测目前有效）&pics=https://blog.os0day.cn/images/avatar.png?v=1643431392967&summary=&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该文章转载自&lt;a href=&#34;https://blog.gd1214b.icu/post/F2_C5EVQh/&#34; title=&#34;解决Gridea同步失败的问题&#34;&gt;https://blog.gd1214b.icu/post/F2_C5EVQh/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;由于众所周知的原因，GitHub在中国大陆地区受到的干扰严重，大部分情况下根本无法连接，这也导致Gridea的同步失败问题。&lt;br&gt;
+&lt;img src=&#34;https://blog.os0day.cn/post-images/1643430897854.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+"><i
                 class="fa fa-qq"></i></a>
         <a title="新浪微博" target="_blank"
-            href="https://service.weibo.com/share/share.php?url=https://blog.os0day.cn/post/sql001/&sharesource=weibo&title=SQL之SQLServer存储过程简单样例(Updating) + "
-            - " + &pic="
+            href="https://service.weibo.com/share/share.php?url=https://blog.os0day.cn/post/gridea001/&sharesource=weibo&title=关于Gridea同步失败的解决方案（亲测目前有效） + "
+            - " + &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该文章转载自&lt;a href=&#34;https://blog.gd1214b.icu/post/F2_C5EVQh/&#34; title=&#34;解决Gridea同步失败的问题&#34;&gt;https://blog.gd1214b.icu/post/F2_C5EVQh/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;由于众所周知的原因，GitHub在中国大陆地区受到的干扰严重，大部分情况下根本无法连接，这也导致Gridea的同步失败问题。&lt;br&gt;
+&lt;img src=&#34;https://blog.os0day.cn/post-images/1643430897854.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&pic="
             https://blog.os0day.cn/images/avatar.png?v=1643431392967 "><i class=" fa fa-weibo "></i></a>
 
                                                                     </span> -->
@@ -417,8 +333,8 @@ ORDER BY DateCreated DESC
                                                                                     <span class="tag ">
                         
     
-    <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">#
-        SQL
+    <a href="https://blog.os0day.cn/tag/5URhJX4EA/">#
+        Gridea
     </a>
     
     
@@ -436,13 +352,9 @@ ORDER BY DateCreated DESC
                                                                                 <!---->
                                                                                 <section class="post-nav">
                                                                                     
-    <a class="prev" rel="prev" href="https://blog.os0day.cn/post/gridea001/">
-        关于Gridea同步失败的解决方案（亲测目前有效）
-    </a>
     
-    
-    <a class="next" rel="next" href="https://blog.os0day.cn/post/execution001/">
-        提高执行力的学习之剖析个人问题和思考提高执行力的方法
+    <a class="next" rel="next" href="https://blog.os0day.cn/post/sql001/">
+        SQL之SQLServer存储过程简单样例(Updating)
     </a>
     
     </section>

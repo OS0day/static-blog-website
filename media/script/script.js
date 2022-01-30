@@ -169,8 +169,8 @@ function getStar() {
 
 function CheckVersion() {
     var xhr = new XMLHttpRequest();
-    //xhr.open('get', 'https://api.github.com/repos/ITJoker233/Gridea-theme-Chic/releases/latest');
-    jsdelivr_url = 'https://data.jsdelivr.com/v1/package/gh/ITJoker233/Gridea-theme-Chic';
+    //xhr.open('get', 'https://api.github.com/repos/OS0day/Gridea-theme-Chic/releases/latest');
+    jsdelivr_url = 'https://data.jsdelivr.com/v1/package/gh/OS0day/Gridea-theme-Chic';
     xhr.open('get', jsdelivr_url);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {

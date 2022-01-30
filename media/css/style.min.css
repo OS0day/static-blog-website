@@ -35,7 +35,14 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 0;
+    background-image: url('https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@v1.7.6/images/back.jpeg');
+    background-repeat: no-repeat;
+    background-size:100%;
+    background-attachment:fixed;
+    background-size:cover;
+    -moz-background-size:cover;
+    -webkit-background-size:cover;
 }
 
 h1 {

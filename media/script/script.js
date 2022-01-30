@@ -204,7 +204,7 @@ function createMessage(message, time = 1000) { //消息推送
 
 function checkVersion() {
     var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://cdn.jsdelivr.net/gh/ITJoker233/ITJoker233.github.io@latest/CDN/Chic.json');
+    xhr.open('get', 'https://cdn.jsdelivr.net/gh/OS0day/MyBlogThemeChicCDN@latest/CDN/Chic.json');
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var version = document.getElementById('version').innerText.trim();

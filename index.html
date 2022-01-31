@@ -2,358 +2,1620 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-<title>
-    OS0day
-</title>
-<!--[if lt IE 9]><script src="//cdn.bootcss.com/html5shiv/r29/html5.js"></script><![endif]-->
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-<meta http-equiv="x-dns-prefetch-control" content="on">
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<meta name="author" content="OS0day">
-<meta name="description" content="一位医疗行业的软件工程师">
-<meta name="keywords" content="Go,Java,DotNet">
-<script async src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-<link rel="stylesheet" href="https://blog.os0day.cn/styles/main.css" />
-<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+  <meta charset="UTF-8" />
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/assets/media/css/style.min.css" />
-        <script src="https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/assets/media/script/tocbot.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/assets/media/script/script.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/assets/media/script/icon.min.js"></script>
-        
-            <!-- <script src="https://cdn.jsdelivr.net/gh/OS0day/MyBlogThemeChicCDN@latest/CDN/js/Card/prism.min.js"></script> -->
-            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
-            
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/default.min.css" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js"></script>
-            
-                <!--点击特效-->
-                <script src="https://cdn.jsdelivr.net/gh/OS0day/MyBlogThemeChicCDN@latest/CDN/js/love.min.js"></script>
-                
-                        <!--CDN样式-->
-                        <script src="https://cdn.jsdelivr.net/gh/OS0day/MyBlogThemeChicCDN@latest/CDN/js/hit-kounter-lc-0.3.0.js"></script>
-                        <script src="https://cdn1.lncld.net/static/js/av-min-1.5.0.js"></script>
-                        
-                            <script>
-                                (function() {
-                                    var bp = document.createElement('script');
-                                    var curProtocol = window.location.protocol.split(':')[0];
-                                    if (curProtocol === 'https') {
-                                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-                                    } else {
-                                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-                                    }
-                                    var s = document.getElementsByTagName("script")[0];
-                                    s.parentNode.insertBefore(bp, s);
-                                })();
-                            </script>
-                            
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea静态个人博客">
+<meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
+<meta name="theme-color" content="#000">
+<title>OS0day</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1643653796232">
+<link rel="stylesheet" href="/media/css/gemini.css">
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link
+  href="//fonts.loli.net/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+  rel="stylesheet" type="text/css">
+
+<link href="/media/hljs/styles/agate.css"
+  rel="stylesheet">
+
+<link rel="stylesheet" href="/styles/main.css">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script src="/media/js/jquery.js"></script>
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+  integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+  integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+  integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+
+
+
+
+
+
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo">
-                <a href="https://blog.os0day.cn">
-                    OS0day
-                </a>
-            </div>
-            <div id="tp-weather-widget"></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="https://blog.os0day.cn">
-                        首页
-                    </a>
-                    
-                    <a class="menu-item" href="https://blog.os0day.cn/archives">
-                        归档
-                    </a>
-                    
-                    <a class="menu-item" href="https://blog.os0day.cn/tags">
-                        标签
-                    </a>
-                    
-                    <a class="menu-item" href="https://blog.os0day.cn/post/about">
-                        关于
-                    </a>
-                    
-                    <a class="menu-item" href="https://blog.os0day.cn/friends">
-                        友链
-                    </a>
-                    
-                        <input id="switch_default" type="checkbox" class="switch_default">
-                        <label for="switch_default" class="toggleBtn"></label>
-            </div>
-            <!-- <form id="gridea-search-form" data-update="1643641409543" action="/search/index.html">
-                <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
-            </form> -->
-        </div>
-    </nav>
-
+  <div class="head-top-line"></div>
+  <div class="header-box">
     
-        <nav class="navbar-mobile" id="nav-mobile">
-            <div class="container">
-                <div class="navbar-header"> 
-                    <div>
-                        <a href="https://blog.os0day.cn">
-                            OS0day
-                        </a>
-                        <!--en-->
-                        <a id="mobile-toggle-theme-en" class="a en">&nbsp;Dark</a>
-                        <!--zh-->
-                        <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;&#x6697;&#x9ED1;</a>
-                    </div>
-                    <!-- <form id="gridea-search-form" data-update="1643641409543" action="/search/index.html">
-                        <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
-                    </form> -->
-                    <!--en-->
-                    <div class="menu-toggle" id="menu-toggle-en" onclick="mobileBtn()">&#9776; Menu</div>
-                    <!--zh-->
-                    <div class="menu-toggle" id="menu-toggle-zh" onclick="mobileBtn()">&#9776; &#x83DC;&#x5355;</div>
-
-                </div>
-                <div class="menu" id="mobile-menu">
-                    
-                        <a class="menu-item" href="https://blog.os0day.cn">
-                            首页
-                        </a>
-                        
-                        <a class="menu-item" href="https://blog.os0day.cn/archives">
-                            归档
-                        </a>
-                        
-                        <a class="menu-item" href="https://blog.os0day.cn/tags">
-                            标签
-                        </a>
-                        
-                        <a class="menu-item" href="https://blog.os0day.cn/post/about">
-                            关于
-                        </a>
-                        
-                        <a class="menu-item" href="https://blog.os0day.cn/friends">
-                            友链
-                        </a>
-                        
-                </div>
-            </div>
-        </nav>
-</header>
-<script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementById("menu-toggle-en");
-        var toggleMenu_zh = document.getElementById("menu-toggle-zh");
-
-        var mobileMenu = document.getElementById("mobile-menu");
-        if (toggleMenu.display != "none") {
-            if (toggleMenu.classList.contains("active")) {
-                toggleMenu.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        } else if (toggleMenu_zh.display != "none") {
-            if (toggleMenu_zh.classList.contains("active")) {
-                toggleMenu_zh.classList.remove("active")
-                mobileMenu.classList.remove("active")
-            } else {
-                toggleMenu_zh.classList.add("active")
-                mobileMenu.classList.add("active")
-            }
-        }
-
-    }
-</script>
-
-            <div class="main" style="background-image: url('https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/images/back.jpeg');
-            /* <div class="main" style="background-image: url('https://blog.os0day.cn/images/back.jpg'); */
-                    display: inline-block;
-                    height: auto;
-                    max-width: 100%;
-                ">
-                <div class="container" >
-                    <div class="intro"  >
-                        <div class="avatar">
-                            <a href="https://blog.os0day.cn"><img src="https://cdn.jsdelivr.net/gh/OS0day/Gridea-theme-Chic@latest/images/avatar.jpeg?v=1643641409543"></a>
-                        </div>
-                        <div class="nickname">
-                            OS0day
-                        </div>
-                        <div class="description">
-                            <span id="subtitle">
-                                一位医疗行业的软件工程师
-                            </span>
-                        </div>
-                        <div class="links">
-                            
-                                
-                                    <a class="link-item" href="https://os0day.github.io/static-blog-website/atom.xml" title="rss"><i class="fa fa-rss"></i></a>
-                                    
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                    <a class="link-item" href="https://gitee.com/os0day" title="gitee"><i class="fa fa-gitee"></i></a>
-                                    
-                                        
-                                
-                                    <a class="link-item" href="https://github.com/OS0day" title="github"><i class="fa fa-github"></i></a>
-                                    
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                        
-                                
-                                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-    <div style="margin: 2% auto; ">
-        <h2 style="text-align: center;">近期文章</h2>
-    </div>
-    <section>
-            <div class="wrapper">
-                <div class="main" >
-                    <div class="post-wrap archive" >
-                        
-                            
-                                
-                                        <article class="archive-item" style="border-bottom:1px solid #CCC">
-                                            <a class="archive-item-link"  href="https://blog.os0day.cn/post/gridea001/">
-                                                关于Gridea同步失败的解决方案（亲测目前有效）
-                                            </a><span class="archive-item-date">2022-01-29 </span></article>
-                                            
-                                        <article class="archive-item" style="border-bottom:1px solid #CCC">
-                                            <a class="archive-item-link"  href="https://blog.os0day.cn/post/sql001/">
-                                                SQL之SQLServer存储过程简单样例(Updating)
-                                            </a><span class="archive-item-date">2022-01-29 </span></article>
-                                            
-                                        <article class="archive-item" style="border-bottom:1px solid #CCC">
-                                            <a class="archive-item-link"  href="https://blog.os0day.cn/post/execution001/">
-                                                提高执行力的学习之剖析个人问题和思考提高执行力的方法
-                                            </a><span class="archive-item-date">2022-01-23 </span></article>
-                                            
-                                        <article class="archive-item" style="border-bottom:1px solid #CCC">
-                                            <a class="archive-item-link"  href="https://blog.os0day.cn/post/goStudy001/">
-                                                GO之基础语法的学习一
-                                            </a><span class="archive-item-date">2022-01-09 </span></article>
-                                            
-                                        <article class="archive-item" style="border-bottom:1px solid #CCC">
-                                            <a class="archive-item-link"  href="https://blog.os0day.cn/post/2021-summary/">
-                                                2021年终总结
-                                            </a><span class="archive-item-date">2022-01-08 </span></article>
-                                            
-                                                
-                    </div>
-                    <div class="pagination-container">
-                        
-                            
-                                    
-                                            
-                    </div>
-                </div>
+<div class="gemini">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
         </div>
-    </section>
-
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
+          
+            <a href="/" class="brand">
+              <span>OS0day</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">做一位友好的分享者！</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="https://blog.os0day.cn" target="_self">
+                  <i class="fa fa-globe"></i> 首页
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="https://blog.os0day.cn/archives" target="_self">
+                  <i class="fa fa-archive"></i> 归档
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="https://blog.os0day.cn/tags" target="_self">
+                  <i class="fa fa-tags"></i> 标签
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="https://blog.os0day.cn/post/about" target="_self">
+                  <i class="fa fa-user"></i> 关于
+                </a>
+              
+            </li>
+          
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友链
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
 </div>
 
-</body>
+<script type="text/javascript"> 
+ 
+  let showNav = true;
+
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+  </div>
+  <div class="main-continer">
+    
+    <div
+      class="section-layout gemini ">
+      <div class="section-layout-wrapper">
+        <div id="sidebarMeta" class="sidebar">
+    
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">OS0day</p>
+    
+    <div class="site-description right-motion">
+      
+      
+      
+        <p>一位医疗行业的软件开发工程师</p>
+      
+      
+    </div>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name language" data-lan="article">文章</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name language" data-lan="tag">标签</span>
+      </a>
+    </div>
+  </div>
+  
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://blog.os0day.cn/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
+    
+  
+  
+    <div class="sidebar-item sidebar-item-social">
+      <div class="social-item">
+        
+          
+            <a href="https://github.com/OS0day">
+              <i class="fa fa-github" title="github"></i>
+            </a>
+          
+        
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
 <script>
-    // type 
-    var typed = new Typed("#subtitle", {
-        strings: ['一位医疗行业的软件工程师', '', ''],
-        startDelay: 100,
-        typeSpeed: 300,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
+      }
     });
-    //head title
-    var titleTime;
-    document.addEventListener("visibilitychange", function() {
-        document.hidden ? (document.title = "\uD83D\uDE25" + OriginTitile, clearTimeout(titleTime)) : (document.title = "\uD83D\uDE1D" + OriginTitile, titleTime = setTimeout(function() {
-            document.title = OriginTitile
-        }, 2E3))
+  }
+  </script>
+        <div class="section-box gemini">
+          <section class="section  posts-expand slide-down-in">
+            
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/gridea001/"> 关于Gridea同步失败的解决方案（亲测目前有效） </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-01-29 12:31:25">2022-01-29</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/5URhJX4EA/">
+        <span>Gridea</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >3<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >578<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://blog.os0day.cn/post/gridea001/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/sql001/"> SQL之SQLServer存储过程简单样例(Updating) </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-01-29 00:17:22">2022-01-29</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">
+        <span>SQL</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >4<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >753<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://blog.os0day.cn/post/sql001/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/execution001/"> 提高执行力的学习之剖析个人问题和思考提高执行力的方法 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-01-23 00:04:10">2022-01-23</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/RyjXNYTRh/">
+        <span>执行力</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >12<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >3494<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://blog.os0day.cn/post/execution001/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/goStudy001/"> GO之基础语法的学习一 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-01-09 16:12:45">2022-01-09</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/0LEHH3jYR/">
+        <span>Go</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >2<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >353<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://blog.os0day.cn/post/goStudy001/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+
+  <article class="post-list-box  post box-shadow-wrapper">
+    <div class="article-wrapper bg-color">
+      <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/2021-summary/"> 2021年终总结 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-01-08 23:09:04">2022-01-08</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/FOKekucWF/">
+        <span>年终总结</span>
+      </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >6<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >1522<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+      <div class="post-body">
+        
+        
+          
+          
+        
+        
+        <div class="post-button text-center">
+          <a class="btn language" data-lan="read-more" href="https://blog.os0day.cn/post/2021-summary/" rel="contents">
+            阅读全文 »
+          </a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </article>
+  
+            
+            
+<div class="page bg-color">
+  <ul class="pagination-ul">
+    
+    
+      
+        <li class="pagination-li pagination-active">
+            <a href="/page/../">
+              1
+            </a>
+        </li>
+      
+    
+    
+  </ul>
+</div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <center id="runTimeBox">
+      已运行:<span id="run_time"></span>
+    </center>
+    <span id="busuanzi_container_site_pv">浏览数:<span id="busuanzi_value_site_pv"></span> 次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">访客数:<span id="busuanzi_value_site_uv"></span> 人</span>
+
+    <script>
+      BirthDay = new Date('');
+      if (BirthDay.getTime()) {
+        function runTime() {
+          str = "";
+          today = new Date();
+          timeold = today.getTime() - BirthDay.getTime();
+          msPerDay = 24 * 60 * 60 * 1000;
+          e_daysold = timeold / msPerDay;
+          daysold = Math.floor(e_daysold);
+          str += daysold + "天";
+          return str;
+        }
+        setInterval(function () {
+          $("#run_time").html(runTime());
+        }, 1000);
+      } else {
+        document.querySelector('.footer').removeChild(document.querySelector('#runTimeBox'));
+      }
+    </script>
+    <div class="poweredby">
+      
+    </div>
+  </footer>
+  
+    
+        <div class="gemini back-to-top" id="back_to_top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span class="scrollpercent"> <span id="back_to_top_text">0</span>% </span>
+            
+        </div>
+        
+                  
+                        
+</div>
+<script>
+  let sideBarOpen = "sidebar-open";
+  let body = document.body;
+  let back2Top = document.querySelector("#back_to_top"),
+    back2TopText = document.querySelector("#back_to_top_text"),
+    drawerBox = document.querySelector("#drawer_box"),
+    rightSideBar = document.querySelector(".sidebar"),
+    viewport = document.querySelector("body");
+
+  function scrollAnimation(currentY, targetY) {
+    let needScrollTop = targetY - currentY;
+    let _currentY = currentY;
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10);
+      _currentY += dist;
+      window.scrollTo(_currentY, currentY);
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY);
+      } else {
+        window.scrollTo(_currentY, targetY);
+      }
+    }, 1);
+  }
+
+  back2Top.addEventListener("click", function (e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+
+  window.addEventListener("scroll", function (e) {
+    let percent =
+      (document.scrollingElement.scrollTop /
+        (document.scrollingElement.scrollHeight -
+          document.scrollingElement.clientHeight)) *
+      100;
+    if (percent > 1 && !back2Top.classList.contains("back-top-active")) {
+      back2Top.classList.add("back-top-active");
+    }
+    if (percent == 0) {
+      back2Top.classList.remove("back-top-active");
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
+
+  let hasCacu = false;
+  window.addEventListener("resize", function (e) {
+    calcuHeight();
+  });
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (
+      (!hasCacu && back2Top.classList.contains("pisces")) ||
+      back2Top.classList.contains("gemini")
+    ) {
+      let sideBar = document.querySelector(".sidebar");
+      let navUl = document.querySelector("#site_nav");
+      sideBar.style =
+        "margin-top:" + (navUl.offsetHeight + navUl.offsetTop + 15) + "px;";
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+
+  let open = false,
+    MOTION_TIME = 300,
+    RIGHT_MOVE_DIS = "320px";
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll(".right-motion");
+    let right = drawerBox.classList.contains("right");
+
+    let transitionDir = right
+      ? "transition.slideRightIn"
+      : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS,
+      };
+      closeProp = {
+        paddingRight: "0px",
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS,
+      };
+      closeProp = {
+        paddingLeft: "0px",
+      };
+    }
+
+    drawerBox.onclick = function () {
+      open = !open;
+      jQuery.Velocity(rightSideBar, "stop");
+      jQuery.Velocity(viewport, "stop");
+      jQuery.Velocity(rightMotions, "stop");
+      if (open) {
+        jQuery.Velocity(
+          rightSideBar,
+          {
+            width: RIGHT_MOVE_DIS,
+          },
+          {
+            duration: MOTION_TIME,
+            begin: function () {
+              jQuery.Velocity(rightMotions, transitionDir, {});
+            },
+          }
+        );
+        jQuery.Velocity(viewport, openProp, {
+          duration: MOTION_TIME,
+        });
+      } else {
+        jQuery.Velocity(
+          rightSideBar,
+          {
+            width: "0px",
+          },
+          {
+            duration: MOTION_TIME,
+            begin: function () {
+              jQuery.Velocity(rightMotions, {
+                opacity: 0,
+              });
+            },
+          }
+        );
+        jQuery.Velocity(viewport, closeProp, {
+          duration: MOTION_TIME,
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle("muse-line");
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    };
+  }
+
+  // 链接跳转
+  let newWindow = "true";
+  if (newWindow === "true") {
+    let links = document.querySelectorAll(".post-body a");
+    links.forEach((item) => {
+      if (!item.classList.contains("btn")) {
+        item.setAttribute("target", "_blank");
+      }
     });
-    var OriginTitile = document.title;
+  }
+
+  let faSearch = document.querySelector("#fa_search");
+  faSearch &&
+    faSearch.addEventListener("click", function () {
+      document.querySelector("#search_mask").style = "";
+    });
+
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
+
+  // 离开当前页title变化
+  var leaveTitle = "";
+  var normal_title = document.title;
+  if (leaveTitle) {
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState == "hidden") {
+        normal_title = document.title;
+        document.title = leaveTitle;
+      } else {
+        document.title = normal_title;
+      }
+    });
+  }
 </script>
 
-        <footer id="footer" class="footer">
-            <div class="copyright">
-                
-                        
-                            
-                                <b id="hitokoto"></b><br>
-                                
-                                        <svg viewBox="0 0 1024 1024" style="margin-left: 5px;margin-right: 5px;" version="1.0" width="8" height="8" class="my-face">
-            <path
-                d="M863.597631 513.574282l-271.33965-140.213484L729.783667 81.926656c3.583731-7.87141 7.167462-15.742819 7.167462-25.214109C736.887134 25.226908 708.345275 0.012799 672.635953 0.012799a63.611229 63.611229 0 0 0-39.293053 12.607055c-1.791866 1.59988-3.519736 3.19976-5.311602 3.19976L147.87531 418.925381a55.547834 55.547834 0 0 0-19.646527 47.356448c1.791866 17.278704 14.27093 33.021523 32.125591 42.492813l271.33965 141.749369L292.504463 945.221908c-12.479064 25.214109-1.791866 53.563983 23.166262 69.306802 10.751194 6.335525 23.230258 9.47129 35.709322 9.47129 16.062795 0 32.125591-4.735645 44.604655-15.742819l480.091993-403.297753a55.547834 55.547834 0 0 0 19.646526-47.228458 61.243407 61.243407 0 0 0-32.12559-44.156688z"
-                fill="#93b5cf"></path>
-        </svg>
-                                        OS0day &copy;Copyright
-                                            <script>
-                                                var date = new Date();
-                                                document.write("" + date.getFullYear());
-                                            </script>
-                                            | Powered by
-                                            <a href="https://github.com" target="_blank">
-                                                Github
-                                            </a>
-            </div>
-            <div id="update" style="display:none;">
-                on
-            </div>
-            
-                <div id="version" style="display:none;">
-                    1.7.6
-                </div>
-                
-                    <script>
-                        var port = '';
-                        
-                        port = ':4000';
-                        
-                        document.write('<div id="home_path" style="display:none;">' + document.location.protocol + '//' + window.document.location.hostname + port + '</div>')
-                    </script>
-        </footer>
-        
-            <script src='https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js'></script>
-            
-                <script>
-                    
-                    
-                    loadlive2d();
-                    
-                    
-                    hitokoto();
-                    
-                    getStar();
-                    hljs.initHighlighting();
-                    console.clear();
-                    
-                    CheckVersion();
-                    
-                    var newDate = new Date();
-                    newDate.setTime(1643641409543);
-                    console.log(" Blog Update Time: " + newDate.toLocaleDateString());
-                    console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;");
-                </script>
+<link rel="stylesheet" href="/media/css/jquery.fancybox.css" />
+<script src="/media/js/jquery.fancybox.js"></script>
+
+<script>
+  let images = document.querySelectorAll(".section img");
+  images.forEach((image) => {
+    var parent = image.parentElement;
+    var next = image.nextElementSibling;
+    parent.removeChild(image);
+    var aelem = document.createElement("a");
+    aelem.href = image.src;
+    aelem.dataset["fancybox"] = "images";
+    aelem.dataset["rel"] = "fancybox-button";
+    aelem.classList.add("fancybox");
+    aelem.appendChild(image);
+    parent.insertBefore(aelem, next);
+  });
+</script>
+  </div>
+</body>
+
+  <div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/gridea001/"" data-c="
+          &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该文章转载自&lt;a href=&#34;https://blog.gd1214b.icu/post/F2_C5EVQh/&#34; title=&#34;解决Gridea同步失败的问题&#34;&gt;https://blog.gd1214b.icu/post/F2_C5EVQh/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;由于众所周知的原因，GitHub在中国大陆地区受到的干扰严重，大部分情况下根本无法连接，这也导致Gridea的同步失败问题。&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623391923562.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+&lt;p&gt;通常的解决方案是通过代理服务器连接，但由于大部分的代理软件（如v2rayN等），只能更改系统的代理设置，像Gridea这些不遵守系统代理设置的软件，无法通过代理服务器连接。&lt;br&gt;
+下面介绍一种本人亲测有效的方法, 这种方法的基本原理是用GitHub Desktop将Gridea生成的网页源代码手动push到GitHub上。&lt;/p&gt;
+&lt;h2 id=&#34;第一步-连接上代理&#34;&gt;第一步 连接上代理&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;有各种代理工具，有免费的也有自建的，或者，修改本地Host文件，等等，在此就不多赘述了。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第二步-下载并安装github-desktop&#34;&gt;第二步 下载并安装GitHub Desktop&lt;/h2&gt;
+&lt;p&gt;下载地址：&lt;br&gt;
+&lt;a href=&#34;https://central.github.com/deployments/desktop/desktop/latest/win32&#34;&gt;https://central.GitHub.com/deployments/desktop/desktop/latest/win32&lt;/a&gt;&lt;br&gt;
+打开安装程序即可自动完成安装。&lt;/p&gt;
+&lt;h2 id=&#34;第三步-登陆github账号&#34;&gt;第三步 登陆GitHub账号&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;点击 Sign into GitHub.com&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481745688.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;li&gt;在浏览器里登陆你的GitHub账号&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481982934.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;第四步-清空gridea-配置目录下ouput文件夹里的所有内容&#34;&gt;第四步 清空Gridea 配置目录下ouput文件夹里的所有内容&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要清空ouput文件夹里的所有内容的原因是GitHub Desktop无法克隆仓库到非空文件夹中，这一步不会影响你的博客数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意output文件夹不要删除&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482115749.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第五步-在github-desktop中克隆你的博客仓库&#34;&gt;第五步 在GitHub Desktop中克隆你的博客仓库&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482247255.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+注意目录要选择Gridea 配置目录下ouput文件夹&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482322654.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第六步-同步gridea&#34;&gt;第六步 同步Gridea&lt;/h2&gt;
+&lt;p&gt;在Gridea中依次点击 远程 &amp;gt; 检测远程连接 &amp;gt; 同步&lt;br&gt;
+这一步无所谓是否同步成功.&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482746893.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第七步-同步到github上&#34;&gt;第七步 同步到GitHub上&lt;/h2&gt;
+&lt;p&gt;在GitHub Desktop 中点击 Pushu origin&lt;br&gt;
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482930640.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+等候完成即可。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;根据评论区中某匿名网友的提醒，有change files的话需要先点击左下角的Commit，才会出现第七步截图里的push origin。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;其他说明&#34;&gt;其他说明&lt;/h1&gt;
+&lt;p&gt;此时你的博客应该已经同步到GitHub上了，如果有任何问题，欢迎在下方的评论区中提出。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;本文作者：&lt;/strong&gt; gd1214b&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;本文链接：&lt;/strong&gt; &lt;a href=&#34;https://blog.gd1214b.icu/post/F2_C5EVQh/&#34; title=&#34;解决Gridea同步失败的问题&#34;&gt;https://blog.gd1214b.icu/post/F2_C5EVQh/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;版权声明：&lt;/strong&gt; 本博客所有文章除特别声明外，均采用 &lt;a href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;BY-NC-SA&lt;/a&gt; 许可协议。转载请注明出处！&lt;/li&gt;
+&lt;/ul&gt;
+">关于Gridea同步失败的解决方案（亲测目前有效）</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/sql001/"" data-c="
+          &lt;pre&gt;&lt;code class=&#34;language-SQL&#34;&gt;--带参存储过程  
+if (object_id(&#39;proc_find_stu&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_find_stu  
+go  
+create proc proc_find_stu(@startId int, @endId int)  
+as  
+    select * from student where id between @startId and @endId  
+go  
+  
+exec proc_find_stu 2, 4;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;--创建存储过程  
+if (exists (select * from sys.objects where name = &#39;proc_get_student&#39;))  
+    drop proc proc_get_student  
+go  
+create proc proc_get_student  
+as  
+    select * from student;  
+  
+--调用、执行存储过程  
+exec proc_get_student;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-SQL&#34;&gt;--带通配符参数存储过程  
+if (object_id(&#39;proc_findStudentByName&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_findStudentByName  
+go  
+create proc proc_findStudentByName(@name varchar(20) = &#39;%j%&#39;, @nextName varchar(20) = &#39;%&#39;)  
+as  
+    select * from student where name like @name and name like @nextName;  
+go  
+  
+exec proc_findStudentByName;  
+exec proc_findStudentByName &#39;%o%&#39;, &#39;t%&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-SQl&#34;&gt;-- 输出参数的存储过程
+if (object_id(&#39;proc_getStudentRecord&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_getStudentRecord  
+go  
+create proc proc_getStudentRecord(  
+    @id int, --默认输入参数  
+    @name varchar(20) out, --输出参数  
+    @age varchar(20) output--输入输出参数  
+)  
+as  
+    select @name = name, @age = age  from student where id = @id and sex = @age;  
+go  
+  
+--   
+declare @id int,  
+        @name varchar(20),  
+        @temp varchar(20);  
+set @id = 7;   
+set @temp = 1;  
+exec proc_getStudentRecord @id, @name out, @temp output;  
+select @name, @temp;  
+print @name + &#39;#&#39; + @temp;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;-- 不缓存的存储过程
+--WITH RECOMPILE 不缓存  
+if (object_id(&#39;proc_temp&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_temp  
+go  
+create proc proc_temp  
+with recompile  
+as  
+    select * from student;  
+go  
+  
+exec proc_temp;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;--加密WITH ENCRYPTION   
+if (object_id(&#39;proc_temp_encryption&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_temp_encryption  
+go  
+create proc proc_temp_encryption  
+with encryption  
+as  
+    select * from student;  
+go  
+  
+exec proc_temp_encryption;  
+exec sp_helptext &#39;proc_temp&#39;;  
+exec sp_helptext &#39;proc_temp_encryption&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在前面介绍游标的例子中，SELECT语句都没有WHERE子句，或者用WHERE子句指定了一个固定的条件，这样每次都查询同样的数据。在更多的情况下，可能要根据实际情况查询不同的数据。为了通过游标对数据进行更加灵活的处理，可以为游标定义参数，这些参数可以用在WHERE子句中。在打开游标时，指定实际的参数值，这样游标在每次打开时，可以根据不同的实际参数值，返回所需的不同数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;-- 带游标参数的存储过程
+if (object_id(&#39;proc_cursor&#39;, &#39;P&#39;) is not null)  
+    drop proc proc_cursor  
+go  
+create proc proc_cursor  
+    @cur cursor varying output  
+as  
+    set @cur = cursor forward_only static for  
+    select id, name, age from student;  
+    open @cur;  
+go  
+--调用  
+declare @exec_cur cursor;  
+declare @id int,  
+        @name varchar(20),  
+        @age int;  
+exec proc_cursor @cur = @exec_cur output;--调用存储过程  
+fetch next from @exec_cur into @id, @name, @age;  
+while (@@fetch_status = 0)  
+begin  
+    fetch next from @exec_cur into @id, @name, @age;  
+    print &#39;id: &#39; + convert(varchar, @id) + &#39;, name: &#39; + @name + &#39;, age: &#39; + convert(char, @age);  
+end  
+close @exec_cur;  
+deallocate @exec_cur;--删除游标
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;---存储过程、row_number完成分页  
+if (object_id(&#39;pro_page&#39;, &#39;P&#39;) is not null)  
+	drop proc proc_cursor  
+go  
+create proc pro_page  
+    @startIndex int,  
+    @endIndex int  
+as  
+    select count(*) from product  
+;      
+    select * from (  
+        select row_number() over(order by pid) as rowId, * from product   
+    ) temp  
+    where temp.rowId between @startIndex and @endIndex  
+go  
+drop proc pro_page  
+exec pro_page 1, 4  
+--  
+--分页存储过程  
+if (object_id(&#39;pro_page&#39;, &#39;P&#39;) is not null)  
+    drop proc pro_stu  
+go  
+create procedure pro_stu(  
+    @pageIndex int,  
+    @pageSize int  
+)  
+as  
+    declare @startRow int, @endRow int  
+    set @startRow = (@pageIndex - 1) * @pageSize +1  
+    set @endRow = @startRow + @pageSize -1  
+    select * from (  
+        select *, row_number() over (order by id asc) as number from student   
+    ) t  
+    where t.number between @startRow and @endRow;  
+  
+exec pro_stu 2, 2;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SQL Server 修改存储过程&lt;br&gt;
+如果需要修改现有的存储过程，只需更换掉 CREATE ，使用 ALTER。&lt;br&gt;
+我们在 “Latest” 和 “Tasks”间添加一个空格（即“Latest Tasks”），并添加描述字段，如下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;ALTER PROCEDURE LatestTasks @Count int 
+AS 
+SET ROWCOUNT @Count 
+SELECT TaskName AS &amp;quot;Latest Tasks&amp;quot;, Description, DateCreated FROM Tasks 
+ORDER BY DateCreated DESC
+&lt;/code&gt;&lt;/pre&gt;
+">SQL之SQLServer存储过程简单样例(Updating)</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/execution001/"" data-c="
+          &lt;p&gt;正式踏入职场工作的萌新，这正式工作的半年当中我在导师以及身边的同事的帮助和引导下，在软件开发的领域有取得一些进步，在进步的同时也发现了自身存在诸多方面的问题。面对这些问题，我尝试过去改正，  但是改正的结果却总是差强人意，我也一时间也难以搞明白是什么原因造成的，片面的归结于是个人经验所限造成的。随着工作时间的延长，我逐渐意识到一点“盲目与片面以及思想上的混乱、行动上的无序”才是这一切问题发生的根源。&lt;br&gt;
+简单来说，就是缺乏指导自己前行的科学方式、方法。&lt;/p&gt;
+&lt;h2 id=&#34;一-发现自身问题是进步的关键&#34;&gt;&lt;strong&gt;一、发现自身问题是进步的关键&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;在《华为执行力》这边书当中有罗列了很多的案例以及对应的方式方法，这些都是他们华为人的经验所得，但是是否&lt;br&gt;
+适合自己，这是首先要去怀疑的。我个人认为只有结合自己的情况，加以改进适配的方案才是最优的。&lt;br&gt;
+个人所存在的问题:&lt;/p&gt;
+&lt;h3 id=&#34;一存在很多错误的观念&#34;&gt;&lt;strong&gt;（一）存在很多错误的观念&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;1、没有以结果未导向，片面重视做的过程。&lt;br&gt;
+在实际的工作当中，企业更为侧重的工作结果，而非校园当中那样去侧重学习与研究即使是没有任何收获也没有关系。&lt;/p&gt;
+&lt;p&gt;2、没有从考虑可以带来多少实际生产力来考虑新知识的学习。&lt;br&gt;
+在校园当中是比较发散的，可以学习任何自己所感兴趣的，可以进行深度的学习，也可以粗略的学习；而对于企业来说学习是具有较强的针对性的，高度需要对某些领域有深入的研究，并带到实际的工作当中去转换为实际的生产力，要有  实际的产出，奉行高度的实用主义。&lt;/p&gt;
+&lt;p&gt;3、没有重视团队协作。&lt;br&gt;
+在企业当中奉行的是团队主义，大家一起沟通协作力求可以快速且保质保量的完成工作。而在&lt;br&gt;
+校园当中，团队协作的观念培养，我是比较不重视的，经常自己学习、自己处理遇到的难题，也就早就了我比较“个人主义”的问题。在面对问题  的时候我往往是先思考自己要怎么去解决，经过冥思苦想来得到解决方案，如果没有得到解决方案才会对外向老师或者专业里更为优秀的同学请&lt;br&gt;
+教，奉行“自己解决的才是自己的”思想观念，然而，实际的工作确是与之想反的，企业需要的  是团队主义，大家在一起工作就是为了更快、更好的完成工作。团队当中一般都有积累了很多的解决方案，或者，团队当中存在工作经验比较丰富的大牛，在遇到问题可以提供一个较为优质的建议，甚至是好的解决方案，这个时候就可以  给工作的推进带来极大的帮助，从而避免重复造“轮子的问题”。&lt;/p&gt;
+&lt;p&gt;4、没有严谨的论证思维，对于自己的推理没有经过验证就觉得合理可行，实际上却是漏洞百出而不察。更多的时候，我都是通过主观臆断的方式，来看待所面对的问题，看待的场景片面化，理论依据的立足点没有经过验证  就以此为论据，最好出现与所想不同的问题，导致需要重新花时间去分析问题处理问题，做了很多的无用功。论证思维培养是需要多学习科学研究的分析方式方法以及&lt;br&gt;
+多请教前辈同事，来丰富自己的分析与论证问题的经验，不断增加自己  考虑与分析问题的维度。&lt;/p&gt;
+&lt;p&gt;5、存在“想当然”的情况。&lt;br&gt;
+没有确认什么是完成的标准，就盲目认为任务完成了，业务需求没有反复确定自己理解的是否是正确的，就想当然认为自己明白了，最后做出来偏差了，验证的时候出现问题了，才不得不去重新论证与改造；任务相当然的认为做完就好，没有去总结“怎么样才是做好、怎么做可以更好、如何做可以效率更高，等等”，做到快完成  的时候，就相当地认为差不多了，没有验证就认为好了，出问题了，又不得不再次返工，既没有效率又没有质量，还破坏了团队对自己的信任。&lt;/p&gt;
+&lt;p&gt;6、没有意识的去规划自己的时间，没有结合工作任务的优先级来分配工作任务，忽视了每项工作完成时间的控制。&lt;/p&gt;
+&lt;h3 id=&#34;二专业能力提高上没有明确的规划&#34;&gt;&lt;strong&gt;（二）专业能力提高上没有明确的规划&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;1、没有有意识去积累解决方案：如，表设计、如何将业务逻辑抽象出来，实现复用、架构如何设计。&lt;br&gt;
+2、没有去制定有效且系统的训练与长期学习计划&lt;br&gt;
+3、业务梳理上缺少对业务快速理解和应用的策略。&lt;br&gt;
+4、分析问题（数据、代码设计与审计、表结构设计与审计、业务关联与分析，等）&lt;br&gt;
+5、问题定位（复现以及快速修复）&lt;/p&gt;
+&lt;h2 id=&#34;二-在结合自身情况的基础上总结合适的改进方案推动进步&#34;&gt;&lt;strong&gt;二、在结合自身情况的基础上总结合适的改进方案推动进步&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;在上述的问题当中，我将问题归类为两类：1、错误的观念；2、没有明确的规划。对于我个人来说，要想有明显的进步，就必须着手将这两大问题解决。&lt;/p&gt;
+&lt;h3 id=&#34;一错误的观念改如何有效纠正&#34;&gt;&lt;strong&gt;（一）错误的观念改如何有效纠正&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;观念可以说是行为习惯，伴随着自身比较久的，需要有意识的去做问题的规避，才能有效的纠正。通过笼统的方式来纠正行为习惯上的问题是行不通的，个人认为需要通过流程化的方式来规范自己的日常工作，让行为习惯在养成规范化的工作方式的同时，完成对自身行为习惯的纠正。&lt;br&gt;
+在《华为执行力》书中，第65页“养成规范化的工作习惯”，恰好与我的观点想契合。规范化的工作习惯是为了规避个人行为习惯、错误观念对工作效率的影响，同时，实现对工作进行有效的监控，让工作可以高效的完成。书中列举了，华为的&lt;strong&gt;秩序化工作法则&lt;/strong&gt;，该法则让华为的员工养成了秩序化工作的好习惯，但是，在执行的过程中，容易出现员工将个人的思想观念或者个人习惯带入到工作任务当中的问题，人为的改变了工作标准，按照自身的思路去做事情，然后，导致工作偏离了正确的轨道；为了解决该问题，华为对员工的要求是：严格按照工作流程标准进行，并对各个关键节点的执行情况进行监控，以确保工作任务是按照计划开展的，并以此为基础再进一步提高效率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;秩序化工作法则&lt;/strong&gt;的核心在于用详细的操作流程规范化工作、用严谨科学的操作方案来减少执行上的问题。我的工作是软件开发，那么我该围绕着什么来制定自己的工作规范呢？软件开发是围绕的业务需求展开，将业务需求抽象为代码逻辑，工作的要点在于个人要完成分配的工作，同时，也需要配合同事推动团队的工作计划。针对于此，我想对于我来说工作规范化的要点在于：如何梳理业务需求与确认需求、业务需求转化为代码逻辑所需要的注意的点（代码逻辑实现的效果是否和业务需求一致）、如何高效的完成个人工作以及配合团队推动工作计划、如何及时反馈工作中遇到的问题（个人工作是团队工作推进的一个节点，节点堵塞，势必会影响到整体工作的推进）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;制定自己的规范化工作流程（在后续工作当中不断完善）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;梳理需求与确认需求（在工作开展前就保证工作方向是正确，避免返工的问题）&lt;br&gt;
+将需求梳理好之后，将自己的对需求的理解，以文字的形式（文字也是对需求的二次梳理以便于加强自己对业务的理解）  反馈给需求提供方，以确保自己的理解是没有错误的，如果有错误也能及时纠正。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将业务需求转化为正确的代码逻辑&lt;br&gt;
+通过思维导图的方式，将所要做工作点进行罗列，对数据实体关系进行分析，用切合业务场景的方案来处理，将自己的整理出来的工作方案和同事进行交流，已确保设计思路实现的效果可以满足业务需求，同时，又可以保留有一定的兼容性，以便于后续功能的扩展。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提早与同事交流沟通好，确定需要配合的点，以确保工作对接可以顺利进行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;确定工作完成的标准，以及需要达到的效果，不能模棱两可。&lt;br&gt;
+工作具体要完成哪些东西才算是完成：业务需求是否满足、配合其他同事需要的设计是否做了，罗列的工作点是否都完成了，等；&lt;br&gt;
+分析与验证的时候，要明确目的，以及预期的结果，还有验证的标准。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对工作的时间要进行把控，减少不必要的时间浪费。&lt;br&gt;
+耗时较长没有解决工作问题的情况，就需要及时反馈，该请教问题就去请教问题，该反馈问题就反馈问题，力求将影响工作进度的情况尽早扼杀在摇篮当中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;个人工作完成后，进行检查和复盘以确保工作完成的质量，做好自测验证编写的代码逻辑是否满足业务需求，是否满足同事的需要，思考工作当中存在的问题点，记录并在后续的工作当中进行改进。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;二如何提升自身的专业水平&#34;&gt;&lt;strong&gt;（二）如何提升自身的专业水平&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;个人认为专业提升的有效途径可以归结为：基础训练、工作当中积累解决方案以工作之余扩充积累解决方案、学习如何有效地梳理业务以及用代码逻辑对业务进行转化、学习如何分析问题、定位问题、解决问题。&lt;br&gt;
+在专业提升当中可以做的事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基础训练&lt;br&gt;
+算法题目训练、常用技术栈demo、个人玩具项目&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;积累解决方案&lt;br&gt;
+从实际工作当中去记录和整理遇到的场景，整理为通用的模型；  从网络学习，学习优秀的架构设计理念以及常用的解决方案模式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;业务的梳理&lt;br&gt;
+需要不断的加强对业务的理解，与SM、产品、同事多探讨业务上的理解问题，通过交流的方式来加深自己对业务的理解  以及将业务当中存在的理解误区找出来并纠正。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分析问题、定位问题、解决问题&lt;br&gt;
+问题的立足点是在于实际的业务，理解清楚业务确定好问题各个影响因素与前置条件为基础，才能将把控好问题分析的  方向，方向正确了才能有正确结论的得出。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;交流是专业提升的有效途径。&lt;br&gt;
+社区文章输出、同事之间的专业问题的交流，等&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;制定的改进方案也是需要根据自己当下的实际情况来的，虽然我在上文描述了很多设想，以及思考了后续要怎么去做，但这毕竟也只是设想的，是一种理想化的场景。在现阶段下，自己是没有办法做到尽善尽美的，需要在实践当中去思考与验证。对于按照流程化的工作方法，以及专业能力提升上的计划与践行，是需要自己平时落实到具体的细节处，具体去思考怎么去做才好，需要找出最为突出的矛盾点并加以解决，而非像只是做这样大体的规划，还是应当需要将一个个小的问题处理好，避免重复犯错的情况下，去实现一个个短期目标来做支撑，并在这个过程当中培养和完善自己，才能最终才能够实现这样通过科学的、流程化的方式来提高工作或者专业学习的效率。&lt;/p&gt;
+&lt;p&gt;有所总结与领悟，同时，也要在日后的工作当中不断严格要求自己，让自己可以将改进方案扎实地落实到位，才能从根本上去解决自身的问题，并且不能急躁，需要一步一个脚印，坚持做好每一步，才会有水滴石穿之效！与诸君共勉！&lt;/p&gt;
+">提高执行力的学习之剖析个人问题和思考提高执行力的方法</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/about/"" data-c="
+          &lt;h3 id=&#34;你好世界&#34;&gt;你好，世界 👋&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;I&#39;m OS0day,  a Software Engineer in the Medical Industry.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;📙 Focusing on DotNet &amp;amp; Go &amp;amp; Java &amp;amp; JavaScript&lt;/li&gt;
+&lt;li&gt;🔨 Creator of applications and frameworks&lt;/li&gt;
+&lt;li&gt;🍖 Meat lover&lt;/li&gt;
+&lt;li&gt;🤪favorite: Cycling、Photography、Running&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;you-can-discuss-it-with-me-️&#34;&gt;You can discuss it with me ✉️:&lt;a href=&#34;mailto:os0day@qq.com&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/-os0day@qq.com-D14836?style=flat-square&amp;amp;logo=Gmail&amp;amp;logoColor=fff&#34; alt=&#34;Email&#34; loading=&#34;lazy&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+">关于</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/goStudy001/"" data-c="
+          &lt;h1 id=&#34;一-demo-之常用变量类型以及函数&#34;&gt;一、Demo 之常用变量类型以及函数&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+	&amp;quot;fmt&amp;quot;
+	&amp;quot;time&amp;quot;
+)
+
+var testNumber = 20
+
+func main() {
+	//var  _age int = 123
+	var _age = 24
+	datetime := time.Now()
+	fmt.Println(&amp;quot;Hello, Go! I&#39;m &amp;quot;,_age,&amp;quot;year&#39;s old&amp;quot;,&amp;quot;当前时间&amp;quot;,datetime)
+	fmt.Println(&amp;quot;当前时间&amp;quot;,datetime)
+	max(12,11)
+}
+
+func max(num1,num2 int) {
+	var result = num1 + num2 + testNumber
+	//getString :=[...]string{}
+	var getString[12] string
+	for  i := 0 ; i &amp;lt; 10 ; i++{
+		result += i
+		fmt.Println(i,&amp;quot;测试一下循环输出&amp;quot;)
+		getString[i] = fmt.Sprintln(i,&amp;quot;测试一下字符串数组的赋值&amp;quot;)
+	}
+	fmt.Println(result,&amp;quot;这个是字符串数组:&amp;quot;,getString)
+	fmt.Println(fmt.Sprintln(ReturnResultAndGetString(20,21)),&amp;quot;测试一下函数的返回值&amp;quot;)
+	fmt.Println(&amp;quot;测试一下函数的返回值&amp;quot;,fmt.Sprintln(ReturnResultAndGetString(20,21)),&amp;quot;&amp;quot;)
+	fmt.Println(&amp;quot;测试返回值不同的使用方式&amp;quot;,fmt.Sprintln(ReturnResult(20,21)),&amp;quot;&amp;quot;)
+}
+
+func ReturnResultAndGetString(num1,num2 int) (result int,getString[12] string){
+	 result = num1 + num2 + testNumber
+	//getString :=[...]string{}
+	for  i := 0 ; i &amp;lt; 10 ; i++{
+		result += i
+		fmt.Println(i,&amp;quot;测试一下循环输出&amp;quot;)
+		getString[i] = fmt.Sprintln(i,&amp;quot;测试一下字符串数组的赋值&amp;quot;)
+	}
+	fmt.Println(result,&amp;quot;这个是字符串数组:&amp;quot;,getString)
+
+
+	return
+}
+
+func ReturnResult(num1, num2 int) (int, [12]string) {
+   var result = num1 + num2 + testNumber
+	//getString :=[...]string{}
+	var getString[12] string
+	for  i := 0 ; i &amp;lt; 10 ; i++{
+		result += i
+		fmt.Println(i,&amp;quot;测试一下循环输出&amp;quot;)
+		getString[i] = fmt.Sprintln(i,&amp;quot;测试一下字符串数组的赋值&amp;quot;)
+	}
+	fmt.Println(result,&amp;quot;这个是字符串数组:&amp;quot;,getString)
+	return result,getString
+}
+&lt;/code&gt;&lt;/pre&gt;
+">GO之基础语法的学习一</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/2021-summary/"" data-c="
+          &lt;h1 id=&#34;引言&#34;&gt;引言&lt;/h1&gt;
+&lt;p&gt;时间飞快，转眼 2021 年已经过去了，我的学生生涯也已经正式结束了将近半年时间。&lt;/p&gt;
+&lt;p&gt;不得不感叹一件事情，那就是“时间飞快”，正式工作的这段时间&lt;br&gt;
+，时间流逝的速度仿佛加了倍速一样，快速地在流逝着，&lt;/p&gt;
+&lt;p&gt;当我把这个感受和朋友讨论的时候，他们也是有相似的感受，都在感叹时间飞快。为何会有这样的感受呢，&lt;/p&gt;
+&lt;p&gt;我自己是把它的原因归结于工作的忙碌以及对前途的焦虑。工作的忙碌让我们没有偷闲的时间，不像是在大学校园里那样，&lt;/p&gt;
+&lt;p&gt;只要不是考试周，就有很多偷闲的时间；在校园的我们也没有去焦虑未来要如何如何，更多还是在享受大学的生活、享受那种没有拘束的快乐；&lt;/p&gt;
+&lt;p&gt;而当我们走出校园之后，生活的压力、工作的压力快速向我们压力的时候，初来乍到的我们，就像是到了一个游戏世界的新手村一样，既兴奋又充满了焦虑和紧张，&lt;/p&gt;
+&lt;p&gt;于是，笨拙的我们开始去思考如何在这样的世界生存、如何去追寻自己想要的生活。我觉得该如果生活该追寻什么、该做些什么，应该立足于自身当下。&lt;/p&gt;
+&lt;h1 id=&#34;一-2021-年下半年所做的事情&#34;&gt;一、 2021 年下半年所做的事情&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;在杭州一家知名的医疗器械科技公司工作，从事软件开发，成为一名初级的软件工程师。&lt;/li&gt;
+&lt;li&gt;在正式工作的半年当中，跌跌撞撞地学习如何成为一名专业的软件工程师。&lt;/li&gt;
+&lt;li&gt;在团队协作当中发现自己存在的问题，适应工作团队协作的模式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;二-总结自身专业上存在的问题&#34;&gt;二、总结自身专业上存在的问题&lt;/h1&gt;
+&lt;h2 id=&#34;1理念问题&#34;&gt;1）理念问题&lt;/h2&gt;
+&lt;p&gt;正式的工作，让我深刻的体会到了校园所学与企业所需的深刻差异，校园中的养成的一些思想和理念与企业的思想和理念是不相同的，甚至是冲突的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于工作来说，企业更侧重的是工作结果，而在校园里更侧重的学习与研究带来的收获。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于新知识的学习，在校园是比较发散的，你可以去学习任何你所感兴趣的，可以进行深度研究，也可以粗略学习，而对于企业而言，学习是具有针对性的，高度需要对某些领域有深入的研究，是需要能够转换为实际的生产力，要有实际产出，是高度的实用主义的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;协作，在&lt;strong&gt;校园&lt;/strong&gt;盛行的是&lt;strong&gt;个人主义&lt;/strong&gt;，而在&lt;strong&gt;企业&lt;/strong&gt;则是&lt;strong&gt;团队主义&lt;/strong&gt;，大家一起沟通协作来快速将工作保质保量的完成。&lt;br&gt;
+这个个人主义，给我的工作带来了很大的麻烦，对于，我这样一个在校园内，喜欢自己人研究工科问题的我来说，如果去解决问题，我往往最先是思考自己将如何去解决问题，若思考无解，&lt;br&gt;
+才是带着疑虑去请教别人问题，奉行 “自己解决的才是自己” 的思想观念，然而，实际的工作却是相反的，在企业中需要的是团队主义，大家一起工作的目的：&lt;strong&gt;是为了快速且高质量地完成工作&lt;/strong&gt;，&lt;br&gt;
+对于，团队已经遇到过并且解决的问题，有现成的解决方案只要是符合使用场景的，变可以直接拿过来用；对于，初入团队中的我来说，我并不清楚团队到底积累了多少解决方案，同时，我又是&lt;br&gt;
+高度奉行个人主义的人，这样就造成了，对于开发任务中有现成解决方案的场景重复“造轮子”浪费了不必要浪费的时间，这样就直接造成了需要的开发时间增加了，甚至造成拖延整个团队的工作进度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;缺乏严谨的论证思维，对于自己的推理自己觉得合理，实际却漏洞百出而不察！&lt;br&gt;
+我并不清楚，到底是自己所在校园教学环境的问题，还是，高校普遍都存在这样的问题——没有专业的实验室或者是工作室来培养学生的论证思维。&lt;br&gt;
+回顾校园的学习，我发现自己更多是在用主观臆断的方式来看待所面对的问题，看待场景片面化，理论依据的立足点没有验证就拿来当做依据，等等诸多问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;随着心情做事情，认为好的情绪才有好的工作与学习状态。&lt;br&gt;
+实际上，这是很不成熟的想法，情绪好与坏不是不去做事情的理由。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;存在想当然的情况。没有确认清楚的情况下，想当然的认为自己明白了，或者，偷懒想当然认为可以了，不用做了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2专业能力提高上存在的问题&#34;&gt;2)专业能力提高上存在的问题&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;开发方案积累不够&lt;br&gt;
+表设计、代码将同类业务抽象出来、架构设计、等等&lt;/li&gt;
+&lt;li&gt;缺少有效的针对基本功的训练计划&lt;/li&gt;
+&lt;li&gt;缺乏系统性规划的长期学习计划&lt;/li&gt;
+&lt;li&gt;缺少对业务快速理解与应用的一套策略&lt;/li&gt;
+&lt;li&gt;分析（数据、代码、表结构设计、业务关联，等等）&lt;/li&gt;
+&lt;li&gt;问题定位（复现以及如何去快速修正问题）&lt;/li&gt;
+&lt;li&gt;整理和梳理清楚所要做的事情是哪些，确定自己做这些工作所需要的工作时间是多久&lt;/li&gt;
+&lt;li&gt;信息整合、分析、决断、行动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;三-新年要做的事情&#34;&gt;三、新年要做的事情&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;继续健身&lt;/li&gt;
+&lt;li&gt;努力把工作和专业的提升做好，将自身存在的上述的种种问题解决&lt;/li&gt;
+&lt;li&gt;平衡好工作和生活，如果可以的话，去认识一位良人&lt;/li&gt;
+&lt;/ul&gt;
+">2021年终总结</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
+
+<input hidden id="copy" />
+<script>
+  !function () {
+    let times = document.querySelectorAll('.publish-time');
+    for (let i = 0; i < times.length; i++) {
+      let date = times[i].dataset.t;
+      let time = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
+      if (time < 60) {
+        str = time + '秒之前';
+      } else if (time < 3600) {
+        str = Math.floor(time / 60) + '分钟之前';
+      } else if (time >= 3600 && time < 86400) {
+        str = Math.floor(time / 3600) + '小时之前';
+      } else if (time >= 86400 && time < 259200) {
+        str = Math.floor(time / 86400) + '天之前';
+      } else {
+        str = times[i].textContent;
+      }
+      times[i].textContent = str;
+    }
+  }();
+</script>
+
+<script>
+  let language = '';
+  if (language !== '') {
+    let map = new Map();
+    if (language === 'en') {
+      map.set('search', 'Search');
+      map.set('category', 'Categories');
+      map.set('article', 'Articles');
+      map.set('tag', 'Tags');
+      map.set('top', 'Top');
+      map.set('publish', 'published');
+      map.set('minute', ' minutes');
+      map.set('read-more', 'Read More');
+      map.set('view', 'View');
+      map.set('words', ' words');
+      map.set('category-in', 'category in');
+      map.set('preview', 'Meta');
+      map.set('index', 'Toc');
+      map.set('no-archives', "You haven't created yet");
+      map.set('archives', " articles in total");
+      map.set('cloud-tags', " tags in total");
+      map.set('copyright', "Copyright: ");
+      map.set('author', "Author: ");
+      map.set('link', "Link: ");
+      map.set('leave-message', "Leave a message");
+      map.set('format', "Links Format");
+      map.set('site-name', "Name: ");
+      map.set('site-link', "Link: ");
+      map.set('site-desc', "Desc: ");
+      map.set('stat', " related results, taking ");
+      map.set('stat-time', " ms");
+      map.set('site-img', "Image: ");
+    }
+
+    if (map.size > 0) {
+      let lanElems = document.querySelectorAll('.language');
+      lanElems.forEach(elem => {
+        let lan = elem.dataset.lan, text = map.get(lan);
+        if (elem.__proto__ === HTMLInputElement.prototype) {
+          elem.placeholder = text
+        } else {
+          if (elem.dataset.count) {
+            text = elem.dataset.count + text;
+          }
+          elem.textContent = text;
+        }
+      })
+    }
+  }
+
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      if (e.srcElement.textContent === '复制成功') {
+        return;
+      }
+      e.srcElement.textContent = '复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          if (elem.textContent === '复制成功') {
+            elem.textContent = '复制代码'
+          }
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    copyElem.textContent = '复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+
+</script>
+<script src="/media/js/motion.js"></script>
+
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script>
+    var scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 200
+    });
+  </script>
+
+
+
+<script src="/media/js/mouse/love.js"></script>
+
+
+
+
 
 </html>

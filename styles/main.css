@@ -2061,7 +2061,7 @@ body {
       }
     @font-face {
       font-family: 'FiraCode-Medium';
-      src: url('/media/fonts/FiraCode-Medium.ttf');
+      src: url('https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.2/media/fonts/FiraCode-Medium.ttf');
     }
     * {
         font-family: 'FiraCode-Medium';

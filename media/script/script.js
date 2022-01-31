@@ -147,7 +147,7 @@ function loadlive2d() {
 function getStar() {
     var star = document.getElementById("star");
     var star_count = 0;
-    var url = "https://api.github.com/users/ITJoker233/repos?page=";
+    var url = "https://api.github.com/users/OS0day/repos?page=";
     var xhr = new XMLHttpRequest();
     xhr.open('get', url);
     xhr.onreadystatechange = function() {

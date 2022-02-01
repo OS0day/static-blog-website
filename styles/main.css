@@ -2048,7 +2048,9 @@ p > code {
     margin-bottom: 10px;
   }
 }
-body {
+.bg-color .bg-color {
+      background: transparent !important;
+    }body {
       background-color: #eee;
     }.header {
         width: 960px;
@@ -2061,7 +2063,7 @@ body {
       }
     @font-face {
       font-family: 'FiraCode-Medium';
-      src: url('https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3//media/fonts/FiraCode-Medium.ttf');
+      src: url('https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/fonts/FiraCode-Medium.ttf');
     }
     * {
         font-family: 'FiraCode-Medium';
@@ -2079,7 +2081,7 @@ body {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #eeeeeefe;
+      background: #eeeeee7f;
     }h1, h2, h3, h4, h5, h6 {
       color: #555;
     }
@@ -2125,11 +2127,11 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #f9f9f9fe;
+      background: #f9f9f97f;
     }
 
     .nav-item:hover {
-      background: #f9f9f9fe;
+      background: #f9f9f97f;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2165,7 +2167,7 @@ body {
       color: #fc6423;
       border-bottom-color: #fc6423;
     }.bg-color {
-      background-color: #fffffffe;
+      background-color: #ffffff7f;
     }
     .site-meta {
       background: #000 !important;
@@ -2180,10 +2182,10 @@ body {
       color: #FFF !important;
     }
     .mist .site-title i {
-      background: #FFFFFFfe;
-    }.box-shadow-wrapper {
-      box-shadow: none !important;
-    }body {
+      background: #FFFFFF7f;
+    }.bg-img img {
+        filter: blur(20px)
+      }body {
       cursor: default;
     }a {
       cursor: pointer;

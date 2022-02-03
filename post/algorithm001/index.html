@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
-<title>SQL之SQLServer存储过程简单样例(Updating) | OS0day</title>
+<title>动态规划之爬楼梯 | OS0day</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/favicon.ico?v=1643883832243">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/fonts/font-awesome.css">
@@ -41,8 +41,8 @@
 
 
 
-  <meta name="description" content="SQL之SQLServer存储过程简单样例(Updating)" />
-  <meta name="keywords" content="SQL" />
+  <meta name="description" content="动态规划之爬楼梯" />
+  <meta name="keywords" content="算法学习" />
 </head>
 
 <body>
@@ -327,14 +327,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.os0day.cn/post/sql001/"> SQL之SQLServer存储过程简单样例(Updating) </a>
+    <a class="post-title-link" href="https://blog.os0day.cn/post/algorithm001/"> 动态规划之爬楼梯 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-01-29 00:17:22">2022-01-29</span>
+      <span class="publish-time" data-t="2022-02-03 18:09:14">2022-02-03</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -342,8 +342,8 @@
       <i class="fa fa-folder-o"></i>
       <span class="pc-show language" data-lan="category-in">标签:</span>
        
-      <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">
-        <span>SQL</span>
+      <a href="https://blog.os0day.cn/tag/Fo8-HCrnh/">
+        <span>算法学习</span>
       </a>
        
     </span>
@@ -361,7 +361,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >753<span class="pc-show language" data-lan="words"
+        >1011<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -371,168 +371,108 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <pre><code class="language-SQL">--带参存储过程  
-if (object_id('proc_find_stu', 'P') is not null)  
-    drop proc proc_find_stu  
-go  
-create proc proc_find_stu(@startId int, @endId int)  
-as  
-    select * from student where id between @startId and @endId  
-go  
-  
-exec proc_find_stu 2, 4;
-</code></pre>
-<pre><code class="language-sql">--创建存储过程  
-if (exists (select * from sys.objects where name = 'proc_get_student'))  
-    drop proc proc_get_student  
-go  
-create proc proc_get_student  
-as  
-    select * from student;  
-  
---调用、执行存储过程  
-exec proc_get_student;
-</code></pre>
-<pre><code class="language-SQL">--带通配符参数存储过程  
-if (object_id('proc_findStudentByName', 'P') is not null)  
-    drop proc proc_findStudentByName  
-go  
-create proc proc_findStudentByName(@name varchar(20) = '%j%', @nextName varchar(20) = '%')  
-as  
-    select * from student where name like @name and name like @nextName;  
-go  
-  
-exec proc_findStudentByName;  
-exec proc_findStudentByName '%o%', 't%';
-</code></pre>
-<pre><code class="language-SQl">-- 输出参数的存储过程
-if (object_id('proc_getStudentRecord', 'P') is not null)  
-    drop proc proc_getStudentRecord  
-go  
-create proc proc_getStudentRecord(  
-    @id int, --默认输入参数  
-    @name varchar(20) out, --输出参数  
-    @age varchar(20) output--输入输出参数  
-)  
-as  
-    select @name = name, @age = age  from student where id = @id and sex = @age;  
-go  
-  
---   
-declare @id int,  
-        @name varchar(20),  
-        @temp varchar(20);  
-set @id = 7;   
-set @temp = 1;  
-exec proc_getStudentRecord @id, @name out, @temp output;  
-select @name, @temp;  
-print @name + '#' + @temp;
-</code></pre>
-<pre><code class="language-sql">-- 不缓存的存储过程
---WITH RECOMPILE 不缓存  
-if (object_id('proc_temp', 'P') is not null)  
-    drop proc proc_temp  
-go  
-create proc proc_temp  
-with recompile  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp;
-</code></pre>
-<pre><code class="language-sql">--加密WITH ENCRYPTION   
-if (object_id('proc_temp_encryption', 'P') is not null)  
-    drop proc proc_temp_encryption  
-go  
-create proc proc_temp_encryption  
-with encryption  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp_encryption;  
-exec sp_helptext 'proc_temp';  
-exec sp_helptext 'proc_temp_encryption';
-</code></pre>
+              <h1 id="01-概念讲解">01、概念讲解</h1>
+<hr>
 <blockquote>
-<p>在前面介绍游标的例子中，SELECT语句都没有WHERE子句，或者用WHERE子句指定了一个固定的条件，这样每次都查询同样的数据。在更多的情况下，可能要根据实际情况查询不同的数据。为了通过游标对数据进行更加灵活的处理，可以为游标定义参数，这些参数可以用在WHERE子句中。在打开游标时，指定实际的参数值，这样游标在每次打开时，可以根据不同的实际参数值，返回所需的不同数据。</p>
+<p>关于动态规划的资料很多，官方的定义是<strong>指把多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解</strong>。概念中的<strong>各阶段之间的关系</strong>，其实指的就是<strong>状态转移方程</strong>。很多人觉得DP难（下文统称动态规划为DP），根本原因是因为<strong>DP跟一些固定形式的算法不同</strong>（比如DFS、二分法、KMP），它没有实际的步骤规定第一步、第二步来做什么，所以准确来说，<strong>DP其实是一种解决问题的思想</strong>。</p>
 </blockquote>
-<pre><code class="language-sql">-- 带游标参数的存储过程
-if (object_id('proc_cursor', 'P') is not null)  
-    drop proc proc_cursor  
-go  
-create proc proc_cursor  
-    @cur cursor varying output  
-as  
-    set @cur = cursor forward_only static for  
-    select id, name, age from student;  
-    open @cur;  
-go  
---调用  
-declare @exec_cur cursor;  
-declare @id int,  
-        @name varchar(20),  
-        @age int;  
-exec proc_cursor @cur = @exec_cur output;--调用存储过程  
-fetch next from @exec_cur into @id, @name, @age;  
-while (@@fetch_status = 0)  
-begin  
-    fetch next from @exec_cur into @id, @name, @age;  
-    print 'id: ' + convert(varchar, @id) + ', name: ' + @name + ', age: ' + convert(char, @age);  
-end  
-close @exec_cur;  
-deallocate @exec_cur;--删除游标
-</code></pre>
-<pre><code class="language-sql">---存储过程、row_number完成分页  
-if (object_id('pro_page', 'P') is not null)  
-	drop proc proc_cursor  
-go  
-create proc pro_page  
-    @startIndex int,  
-    @endIndex int  
-as  
-    select count(*) from product  
-;      
-    select * from (  
-        select row_number() over(order by pid) as rowId, * from product   
-    ) temp  
-    where temp.rowId between @startIndex and @endIndex  
-go  
-drop proc pro_page  
-exec pro_page 1, 4  
---  
---分页存储过程  
-if (object_id('pro_page', 'P') is not null)  
-    drop proc pro_stu  
-go  
-create procedure pro_stu(  
-    @pageIndex int,  
-    @pageSize int  
-)  
-as  
-    declare @startRow int, @endRow int  
-    set @startRow = (@pageIndex - 1) * @pageSize +1  
-    set @endRow = @startRow + @pageSize -1  
-    select * from (  
-        select *, row_number() over (order by id asc) as number from student   
-    ) t  
-    where t.number between @startRow and @endRow;  
-  
-exec pro_stu 2, 2;
+<p>这种思想的本质是：<strong>一个规模比较大的问题</strong>（可以用两三个参数表示的问题），可以<strong>通过若干规模较小的问题的结果来得到</strong>的（通常会寻求到一些特殊的计算逻辑，如求最值等），如下图所示，一个大规模的问题由若干个子问题组成。</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/guimo.png" alt="" loading="lazy"></figure>
+<p>那么我们应该如何通过子问题去得到大规模问题呢？这就用到了<strong>状态转移方程</strong>（上面有介绍状态转移方程哦，不懂的请往上翻哦），我们一般看到的状态转移方程，基本都是这样：</p>
+<pre><code>opt ：指代特殊的计算逻辑，通常为 max or min。
 
+i,j,k 都是在定义DP方程中用到的参数。
+
+dp[i] = opt(dp[i-1])+1
+
+dp[i][j] = w(i,j,k) + opt(dp[i-1][k])
+
+dp[i][j] = opt(dp[i-1][j] + xi, dp[i][j-1] + yj, ...) 
+</code></pre>
+<p>每一个状态转移方程，多少都有一些细微的差别。这个其实很容易理解，世间的关系多了去了，不可能抽象出完全可以套用的公式。所以我个人其实<strong>不建议去死记硬背各种类型的状态转移方程</strong>。但是DP的题型真的就完全无法掌握，无法归类进行分析吗？我认为不是的。在本系列中，我将由简入深为大家讲解动态规划这个主题。</p>
+<h1 id="02-题目分析">02、题目分析</h1>
+<hr>
+<p>我们先看一道最简单的DP题目，熟悉DP的概念：</p>
+<table>
+<thead>
+<tr>
+<th>第70题：爬楼梯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ **注意：**给定 <em>n</em> 是一个正整数。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入： 2   输出： 2  解释： 有两种方法可以爬到楼顶。
+1.  1 阶 + 1 阶
+2.  2 阶 
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入： 3   输出： 3  解释： 有三种方法可以爬到楼顶。
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶 
+</code></pre>
+<h1 id="03-图解分析">03 、图解分析</h1>
+<hr>
+<p>通过分析我们可以明确，该题可以被分解为一些包含最优子结构的子问题，即它的<strong>最优解可以从其子问题的最优解来有效地构建</strong>。满足“<strong>将大问题分解为若干个规模较小的问题</strong>”的条件。所我们令 <strong>dp[n] 表示能到达第 n 阶</strong>的方法总数，可以得到如下状态转移方程：</p>
+<blockquote>
+<p><strong>dp[n]=dp[n-1]+dp[n-2]</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>上 1 阶台阶：有1种方式。</p>
+</li>
+<li>
+<p>上 2 阶台阶：有1+1和2两种方式。</p>
+</li>
+<li>
+<p>上 3 阶台阶：到达第3阶的方法总数就是到第1阶和第2阶的方法数之和。</p>
+</li>
+<li>
+<p>上 n 阶台阶，到达第n阶的方法总数就是到第 (n-1) 阶和第 (n-2) 阶的方法数之和。</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/moxing.png" alt="" loading="lazy"></figure>
+<h2 id=""><a href="#_04%E3%80%81go%E8%AF%AD%E8%A8%80%E7%A4%BA%E4%BE%8B">#</a> 04、GO语言示例</h2>
+<p>根据以上分析，可以得到代码如下：</p>
+<pre><code class="language-Go">func climbStairs(n int) int {
+	if n == 1 {
+		return 1
+	}
+	dp := make([]int, n+1)
+	dp[1] = 1
+	dp[2] = 2
+	for i := 3; i &lt;= n; i++ {
+		dp[i] = dp[i-1] + dp[i-2]
+	}
+	return dp[n]
+} 
+</code></pre>
+<pre><code class="language-Go">// 占用内存更少的方案
+
+func climbStairs(number int) int {
+    if number == 1 {
+        return 1
+    }
+    if number == 2 {
+        return 2
+    }
+    dp := [2]int{
+        1, 2,
+    }
+    for i := 3; i &lt;= number; i++ {
+        dp[0], dp[1] = dp[1], dp[0]+dp[1]
+    }
+    return dp[1]
+}
 </code></pre>
 <blockquote>
-<p>SQL Server 修改存储过程<br>
-如果需要修改现有的存储过程，只需更换掉 CREATE ，使用 ALTER。<br>
-我们在 “Latest” 和 “Tasks”间添加一个空格（即“Latest Tasks”），并添加描述字段，如下</p>
+<p>参考来源为：<a href="https://www.geekxh.com/1.2.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/201.html#_01%E3%80%81%E6%A6%82%E5%BF%B5%E8%AE%B2%E8%A7%A3">爬楼梯(70) | 小浩算法 (geekxh.com)</a></p>
 </blockquote>
-<pre><code class="language-sql">ALTER PROCEDURE LatestTasks @Count int 
-AS 
-SET ROWCOUNT @Count 
-SELECT TaskName AS &quot;Latest Tasks&quot;, Description, DateCreated FROM Tasks 
-ORDER BY DateCreated DESC
-</code></pre>
 
             </div>
             
@@ -545,7 +485,7 @@ ORDER BY DateCreated DESC
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://blog.os0day.cn/post/sql001/" title="SQL之SQLServer存储过程简单样例(Updating)">https://blog.os0day.cn/post/sql001/</a>
+      <a href="https://blog.os0day.cn/post/algorithm001/" title="动态规划之爬楼梯">https://blog.os0day.cn/post/algorithm001/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -554,21 +494,17 @@ ORDER BY DateCreated DESC
   </ul>
   <div class="tags">
     
-      <a href="https://blog.os0day.cn/tag/DSDH7EoXT/"># SQL</a>
+      <a href="https://blog.os0day.cn/tag/Fo8-HCrnh/"># 算法学习</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">关于Gridea同步失败的解决方案（亲测目前有效）</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="提高执行力的学习之剖析个人问题和思考提高执行力的方法" href="https://blog.os0day.cn/post/execution001/">提高执行力的学习之剖析个人问题和思考提高执行力的方法</a>
-        <a class="nav-mobile-next" title="提高执行力的学习之剖析个人问题和思考提高执行力的方法" href="https://blog.os0day.cn/post/execution001/">下一篇</a>
+        <a class="nav-pc-next" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">关于Gridea同步失败的解决方案（亲测目前有效）</a>
+        <a class="nav-mobile-next" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

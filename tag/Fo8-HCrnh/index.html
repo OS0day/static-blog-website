@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
-<title>SQL之SQLServer存储过程简单样例(Updating) | OS0day</title>
+<title>OS0day</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/favicon.ico?v=1643883832243">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/fonts/font-awesome.css">
@@ -41,8 +41,6 @@
 
 
 
-  <meta name="description" content="SQL之SQLServer存储过程简单样例(Updating)" />
-  <meta name="keywords" content="SQL" />
 </head>
 
 <body>
@@ -175,17 +173,10 @@
   <div class="main-continer">
     
     <div
-      class="section-layout gemini ">
+      class="section-layout  gemini">
       <div class="section-layout-wrapper">
-        
-
-<div class="sidebar">
-  
-    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
-      
-      <div class="sidebar-body gemini" id="sidebar_body">
-        
-          
+        <div id="sidebarMeta" class="sidebar">
+    
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/images/avatar.png"/>
@@ -241,344 +232,76 @@
 
 
 </div>
-        
-      </div>
-    </div>
-  
 </div>
 <script>
-  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
-  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
-  const SLIDE_UP_IN = 'slide-up-in';
-
-  let sidebar = document.querySelector('#sidebar'),
-  tocSideBar = document.querySelector('#tocSideBar'),
-  metaSideBar = document.querySelector('#metaSideBar'),
-  postToc = document.querySelector('#post_toc'),
-  postSiteMeta = document.querySelector('#post_side_meta'),
-  sidebarTitle = document.querySelector('.sidebar-title'),
-  sidebarBody = document.querySelector('#sidebar_body');
-
-  tocSideBar && tocSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  metaSideBar && metaSideBar.addEventListener('click', (e) => {
-    toggleSidebar(e);
-  });
-
-  function toggleSidebar(e) {
-    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
-    if (currentTitle == e.srcElement) {
-      return ;
-    }
-    let current, showElement, hideElement;
-    if (e.srcElement == metaSideBar) {
-      showElement = postSiteMeta;
-      hideElement = postToc;
-    } else if (e.srcElement == tocSideBar){
-      showElement = postToc;
-      hideElement = postSiteMeta;
-    }
-    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
-    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
-
-    jQuery.Velocity(hideElement, 'stop');
-    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
-      display: 'none',
-      duration: 200,
-      complete: function () {
-        jQuery.Velocity(showElement, 'transition.slideDownIn', {
-          duration: 200
-        });
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
       }
-    })
-    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
-    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+    });
   }
-
-  postToc && postToc.addEventListener('transitionend', function() {
-    this.classList.remove(SLIDE_UP_IN);
-  });
-
-  if (sidebarBody) {
-    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
-      let hasFix = false;
-      let scrollEl = document.querySelector('.main-continer');
-      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
-      window.addEventListener('scroll', function(e) {
-        if (document.scrollingElement.scrollTop >= limitTop) {
-          if (!hasFix) {
-            sidebar.classList.add('sidebar-fixed');
-            hasFix = true;
-          }
-        } else {
-          if (hasFix) {
-            sidebar.classList.remove('sidebar-fixed');
-            hasFix = false;
-          }
-        }
-      });
-    }
-  }
-  
-</script>
-        <div class="section-box box-shadow-wrapper">
-          <div class="section bg-color post post-page">
-            <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://blog.os0day.cn/post/sql001/"> SQL之SQLServer存储过程简单样例(Updating) </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-01-29 00:17:22">2022-01-29</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">标签:</span>
-       
-      <a href="https://blog.os0day.cn/tag/DSDH7EoXT/">
-        <span>SQL</span>
+  </script>
+        <div class="section-box tag-line box-shadow-wrapper">
+          <section class="section tags-section posts-expand bg-color">
+            <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
+          算法学习
+          <small class="language" data-lan="tag">标签</small>
+        </h2>
+      </div>
+      
+      
+      
+      <a href="https://blog.os0day.cn/post/algorithm001/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              02-03
+              <small>动态规划之爬楼梯</small>
+            </h1>
+          </div>
+        </div>
       </a>
-       
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span
-        >4<span class="language" data-lan="minute"
-          >分钟</span
-        ></span
-      >
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span
-        >753<span class="pc-show language" data-lan="words"
-          >字数</span
-        ></span
-      >
-    </span>
-    
-  </div>
-</section>
-
-            <div class="post-body next-md-body" id="post_body">
-              <pre><code class="language-SQL">--带参存储过程  
-if (object_id('proc_find_stu', 'P') is not null)  
-    drop proc proc_find_stu  
-go  
-create proc proc_find_stu(@startId int, @endId int)  
-as  
-    select * from student where id between @startId and @endId  
-go  
-  
-exec proc_find_stu 2, 4;
-</code></pre>
-<pre><code class="language-sql">--创建存储过程  
-if (exists (select * from sys.objects where name = 'proc_get_student'))  
-    drop proc proc_get_student  
-go  
-create proc proc_get_student  
-as  
-    select * from student;  
-  
---调用、执行存储过程  
-exec proc_get_student;
-</code></pre>
-<pre><code class="language-SQL">--带通配符参数存储过程  
-if (object_id('proc_findStudentByName', 'P') is not null)  
-    drop proc proc_findStudentByName  
-go  
-create proc proc_findStudentByName(@name varchar(20) = '%j%', @nextName varchar(20) = '%')  
-as  
-    select * from student where name like @name and name like @nextName;  
-go  
-  
-exec proc_findStudentByName;  
-exec proc_findStudentByName '%o%', 't%';
-</code></pre>
-<pre><code class="language-SQl">-- 输出参数的存储过程
-if (object_id('proc_getStudentRecord', 'P') is not null)  
-    drop proc proc_getStudentRecord  
-go  
-create proc proc_getStudentRecord(  
-    @id int, --默认输入参数  
-    @name varchar(20) out, --输出参数  
-    @age varchar(20) output--输入输出参数  
-)  
-as  
-    select @name = name, @age = age  from student where id = @id and sex = @age;  
-go  
-  
---   
-declare @id int,  
-        @name varchar(20),  
-        @temp varchar(20);  
-set @id = 7;   
-set @temp = 1;  
-exec proc_getStudentRecord @id, @name out, @temp output;  
-select @name, @temp;  
-print @name + '#' + @temp;
-</code></pre>
-<pre><code class="language-sql">-- 不缓存的存储过程
---WITH RECOMPILE 不缓存  
-if (object_id('proc_temp', 'P') is not null)  
-    drop proc proc_temp  
-go  
-create proc proc_temp  
-with recompile  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp;
-</code></pre>
-<pre><code class="language-sql">--加密WITH ENCRYPTION   
-if (object_id('proc_temp_encryption', 'P') is not null)  
-    drop proc proc_temp_encryption  
-go  
-create proc proc_temp_encryption  
-with encryption  
-as  
-    select * from student;  
-go  
-  
-exec proc_temp_encryption;  
-exec sp_helptext 'proc_temp';  
-exec sp_helptext 'proc_temp_encryption';
-</code></pre>
-<blockquote>
-<p>在前面介绍游标的例子中，SELECT语句都没有WHERE子句，或者用WHERE子句指定了一个固定的条件，这样每次都查询同样的数据。在更多的情况下，可能要根据实际情况查询不同的数据。为了通过游标对数据进行更加灵活的处理，可以为游标定义参数，这些参数可以用在WHERE子句中。在打开游标时，指定实际的参数值，这样游标在每次打开时，可以根据不同的实际参数值，返回所需的不同数据。</p>
-</blockquote>
-<pre><code class="language-sql">-- 带游标参数的存储过程
-if (object_id('proc_cursor', 'P') is not null)  
-    drop proc proc_cursor  
-go  
-create proc proc_cursor  
-    @cur cursor varying output  
-as  
-    set @cur = cursor forward_only static for  
-    select id, name, age from student;  
-    open @cur;  
-go  
---调用  
-declare @exec_cur cursor;  
-declare @id int,  
-        @name varchar(20),  
-        @age int;  
-exec proc_cursor @cur = @exec_cur output;--调用存储过程  
-fetch next from @exec_cur into @id, @name, @age;  
-while (@@fetch_status = 0)  
-begin  
-    fetch next from @exec_cur into @id, @name, @age;  
-    print 'id: ' + convert(varchar, @id) + ', name: ' + @name + ', age: ' + convert(char, @age);  
-end  
-close @exec_cur;  
-deallocate @exec_cur;--删除游标
-</code></pre>
-<pre><code class="language-sql">---存储过程、row_number完成分页  
-if (object_id('pro_page', 'P') is not null)  
-	drop proc proc_cursor  
-go  
-create proc pro_page  
-    @startIndex int,  
-    @endIndex int  
-as  
-    select count(*) from product  
-;      
-    select * from (  
-        select row_number() over(order by pid) as rowId, * from product   
-    ) temp  
-    where temp.rowId between @startIndex and @endIndex  
-go  
-drop proc pro_page  
-exec pro_page 1, 4  
---  
---分页存储过程  
-if (object_id('pro_page', 'P') is not null)  
-    drop proc pro_stu  
-go  
-create procedure pro_stu(  
-    @pageIndex int,  
-    @pageSize int  
-)  
-as  
-    declare @startRow int, @endRow int  
-    set @startRow = (@pageIndex - 1) * @pageSize +1  
-    set @endRow = @startRow + @pageSize -1  
-    select * from (  
-        select *, row_number() over (order by id asc) as number from student   
-    ) t  
-    where t.number between @startRow and @endRow;  
-  
-exec pro_stu 2, 2;
-
-</code></pre>
-<blockquote>
-<p>SQL Server 修改存储过程<br>
-如果需要修改现有的存储过程，只需更换掉 CREATE ，使用 ALTER。<br>
-我们在 “Latest” 和 “Tasks”间添加一个空格（即“Latest Tasks”），并添加描述字段，如下</p>
-</blockquote>
-<pre><code class="language-sql">ALTER PROCEDURE LatestTasks @Count int 
-AS 
-SET ROWCOUNT @Count 
-SELECT TaskName AS &quot;Latest Tasks&quot;, Description, DateCreated FROM Tasks 
-ORDER BY DateCreated DESC
-</code></pre>
-
-            </div>
-            
-            
-              <div class="post-footer">
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong class="language" data-lan="author">本文作者：</strong>
-      OS0day
-    </li>
-    <li class="post-copyright-link">
-      <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://blog.os0day.cn/post/sql001/" title="SQL之SQLServer存储过程简单样例(Updating)">https://blog.os0day.cn/post/sql001/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong class="language" data-lan="copyright">版权声明： </strong>
-      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-  <div class="tags">
-    
-      <a href="https://blog.os0day.cn/tag/DSDH7EoXT/"># SQL</a>
-    
-  </div>
-  <div class="nav">
-    <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">关于Gridea同步失败的解决方案（亲测目前有效）</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="关于Gridea同步失败的解决方案（亲测目前有效）" href="https://blog.os0day.cn/post/gridea001/">上一篇</a>
       
-    </div>
-    <div class="nav-next">
       
-        <a class="nav-pc-next" title="提高执行力的学习之剖析个人问题和思考提高执行力的方法" href="https://blog.os0day.cn/post/execution001/">提高执行力的学习之剖析个人问题和思考提高执行力的方法</a>
-        <a class="nav-mobile-next" title="提高执行力的学习之剖析个人问题和思考提高执行力的方法" href="https://blog.os0day.cn/post/execution001/">下一篇</a>
-        <i class="fa fa-chevron-right"></i>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
     </div>
   </div>
 </div>
-            
-            
-  
-
-          </div>
+          </section>
         </div>
       </div>
     </div>
@@ -829,223 +552,6 @@ ORDER BY DateCreated DESC
     parent.insertBefore(aelem, next);
   });
 </script>
-    <div class="reward-mask" style="display: none;">
-  <div class="reward-relative">
-    <span class="close" aria-hidden="true">x</span>
-    <div class="reward-body">
-      <h2>感谢您的支持，我会继续努力的!</h2>
-      <div class="reward-img-box">
-        <div style="position: relative; width: 140px; height: 140px;">
-          
-          
-          
-        </div>
-      </div>
-      <p class="reward-word">扫码打赏，你说多少就多少</p>
-      <p class="reward-tip"> </p>
-    </div>
-    <div class="bottom">
-      
-      
-    </div>
-  </div>
-</div>
-<style>
-  .reward-mask {
-    position: fixed;
-    z-index: 99999;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #00000054;
-  }
-
-  .reward-relative {
-    position: relative;
-    width: 480px;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #fff;
-    top: 50%;
-    margin-top: -205px;
-  }
-
-  .reward-relative .close {
-    position: absolute;
-    right: 10px;
-    font-weight: normal;
-    font-size: 16px;
-    color: #929292;
-  }
-
-  .reward-body {
-    padding: 40px 20px 20px;
-  }
-
-  .bottom {
-    display: flex;
-  }
-
-  .reward-btn {
-    text-align: center;
-  }
-
-  .reward-btn-text {
-    display: inline-block;
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
-    background-color: #ff9734;
-    color: #FFF;
-    margin-top: 20px;
-  }
-
-  .pay-text {
-    margin-top: 10px;
-    padding: 10px;
-    flex: 1;
-    transition: all .2s linear;
-  }
-
-  .pay-text:hover {
-    background-color: #a5a5a536;
-  }
-
-  .reward-body h2 {
-    padding-top: 10px;
-    text-align: center;
-    color: #a3a3a3;
-    font-size: 16px;
-    font-weight: normal;
-    margin: 0 0 20px;
-  }
-
-  .reward-body h2:after,
-  .reward-body h2:before {
-    font-family: Arial, Helvetica, sans-serif;
-    background: 0 0;
-    width: 0;
-    height: 0;
-    font-style: normal;
-    color: #eee;
-    font-size: 80px;
-    position: absolute;
-    top: 20px;
-  }
-
-  .reward-body h2:before {
-    content: '\201c';
-    left: 50px;
-  }
-
-  .reward-body h2:after {
-    content: '\201d';
-    right: 80px;
-  }
-
-  .reward-img-box {
-    display: inline-block;
-    padding: 10px;
-    border: 6px solid #ea5f00;
-    margin: 0 auto;
-    border-radius: 3px;
-    position: relative;
-  }
-
-  .reward-img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: 767px) {
-    .reward-relative {
-      height: 100%;
-      top: 0px;
-      margin-top: 0;
-      width: auto;
-    }
-
-    .reward-relative .bottom {
-      flex-direction: column;
-    }
-
-    .reward-relative .pay-text {
-      width: 80%;
-      margin: 5px auto;
-      border: 1px solid silver;
-      padding: 6px;
-      border-radius: 4px;
-    }
-
-    .reward-body h2:after {
-      right: 40px;
-    }
-
-    .reward-body h2:after,
-    .reward-body h2:before {
-      font-size: 60px;
-    }
-
-    .reward-body h2:before {
-      left: 20px;
-    }
-  }
-</style>
-<script>
-  !function () {
-    var mask = document.querySelector('.reward-mask');
-    let close = document.querySelector('.reward-relative .close');
-    let rewardBtn = document.querySelector('.reward-btn');
-
-    let zfb = document.querySelector('#zfb'),
-      wx = document.querySelector('#wx'),
-      zfbBtn = document.querySelector('#zfbBtn'),
-      wxBtn = document.querySelector('#wxBtn');
-
-    if (zfbBtn && wxBtn) {
-      zfbBtn.addEventListener('click', () => {
-        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
-          duration: 400
-        });
-        jQuery.Velocity(wx, 'transition.slideRightOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-
-      wxBtn.addEventListener('click', () => {
-        jQuery.Velocity(wx, 'transition.slideRightIn', {
-          duration: 400
-        });
-        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
-          display: 'none',
-          duration: 400
-        });
-      });
-    }
-
-    rewardBtn.addEventListener('click', (e) => {
-      jQuery.Velocity(mask, 'transition.slideDownIn', {
-        duration: 400
-      })
-    });
-
-    close.addEventListener('click', (e) => {
-      e.preventDefault();
-      jQuery.Velocity(mask, 'transition.slideUpOut', {
-        duration: 400
-      })
-    })
-  }()
-</script>
-
   </div>
 </body>
 
@@ -1930,6 +1436,7 @@ func ReturnResult(num1, num2 int) (int, [12]string) {
 
 
   <script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/js/cool.js"></script>
+
 
 
 

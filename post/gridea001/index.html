@@ -9,7 +9,7 @@
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
 <title>关于Gridea同步失败的解决方案（亲测目前有效） | OS0day</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/favicon.ico?v=1644691300295">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/favicon.ico?v=1644691590448">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/media/fonts/font-awesome.css">
 <link
@@ -183,9 +183,18 @@
   
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.3/images/avatar.png"/>
@@ -241,6 +250,204 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-%E8%BF%9E%E6%8E%A5%E4%B8%8A%E4%BB%A3%E7%90%86">第一步 连接上代理</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85github-desktop">第二步 下载并安装GitHub Desktop</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-%E7%99%BB%E9%99%86github%E8%B4%A6%E5%8F%B7">第三步 登陆GitHub账号</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5-%E6%B8%85%E7%A9%BAgridea-%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%8Bouput%E6%96%87%E4%BB%B6%E5%A4%B9%E9%87%8C%E7%9A%84%E6%89%80%E6%9C%89%E5%86%85%E5%AE%B9">第四步 清空Gridea 配置目录下ouput文件夹里的所有内容</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5-%E5%9C%A8github-desktop%E4%B8%AD%E5%85%8B%E9%9A%86%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BB%93%E5%BA%93">第五步 在GitHub Desktop中克隆你的博客仓库</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5-%E5%90%8C%E6%AD%A5gridea">第六步 同步Gridea</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5-%E5%90%8C%E6%AD%A5%E5%88%B0github%E4%B8%8A">第七步 同步到GitHub上</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">其他说明</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
         
       </div>
     </div>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.os0day.cn</id>
     <title>OS0day</title>
-    <updated>2022-02-13T12:04:45.915Z</updated>
+    <updated>2022-02-16T12:05:40.525Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.os0day.cn"/>
     <link rel="self" href="https://blog.os0day.cn/atom.xml"/>
@@ -10,6 +10,64 @@
     <logo>https://blog.os0day.cn/images/avatar.png</logo>
     <icon>https://blog.os0day.cn/favicon.ico</icon>
     <rights>All rights reserved 2022, OS0day</rights>
+    <entry>
+        <title type="html"><![CDATA[前端框架Vue调试]]></title>
+        <id>https://blog.os0day.cn/post/Vue001/</id>
+        <link href="https://blog.os0day.cn/post/Vue001/">
+        </link>
+        <updated>2022-02-16T11:54:47.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>参考自 ：<a href="https://www.cnblogs.com/JerryMouseLi/p/11032840.html">VUE程序调试的方法 - JerryMouseLi - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+<h1 id="vue前端框架调试">Vue前端框架调试</h1>
+<h1 id="控制台">控制台</h1>
+<h2 id="11-添加consolelog指令">1.1 添加console.log指令</h2>
+<p>在代码中添加console.log()方法，这里例子输出从数据库读回来的最高最低温，详见如下：<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203915326-1701770661.jpg.png" alt="" loading="lazy"></p>
+<h2 id="12-调出界面如下">1.2 调出界面如下</h2>
+<figure data-type="image" tabindex="1"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203924871-142682674.jpg.png" alt="" loading="lazy"></figure>
+<h2 id="13-google浏览器的console窗口edge相同">1.3 Google浏览器的Console窗口（Edge相同）</h2>
+<p>在Google浏览器中按F12，调出Console窗口如下。<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203931024-406784107.jpg.png" alt="" loading="lazy"></p>
+<h2 id="14-consoleerror输出">1.4 console.error输出</h2>
+<p>将代码改成Error输出如下<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203938283-831992557.jpg.png" alt="" loading="lazy"></p>
+<h2 id="15-浏览器输出">1.5 浏览器输出</h2>
+<p>则浏览器的Console输出会变成红色如下。<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203945310-2048294668.jpg.png" alt="" loading="lazy"></p>
+<p><strong>如果输出的是一个JS对象或者数组，则需要用JSON.stringify方法将其转换成json数组再输出,如下<br>
+<code>console.log(JSON.stringify(resolve));</code></strong></p>
+<h1 id="alert">alert</h1>
+<h2 id="21-alert方法代码">2.1 alert方法代码</h2>
+<figure data-type="image" tabindex="2"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203952625-764198498.jpg.png" alt="" loading="lazy"></figure>
+<h2 id="22-alert提示效果">2.2 alert提示效果</h2>
+<figure data-type="image" tabindex="3"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204001962-1112393179.jpg.png" alt="" loading="lazy"></figure>
+<p><strong>备注：alert方法为阻塞式，点击确定之后，前端代码才会继续运行</strong></p>
+<h1 id="debuger">debuger</h1>
+<h2 id="31-设置断点">3.1 设置断点</h2>
+<p>设置断点debugger如下图<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204009181-1293854393.jpg.png" alt="" loading="lazy"></p>
+<h2 id="32-运行代码">3.2 运行代码</h2>
+<p>则运行代码之后，代码会自动跳到断点，停止运行如下<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204015565-1060766880.jpg.png" alt="" loading="lazy"></p>
+<h2 id="33-输入关心的属性">3.3 输入关心的属性</h2>
+<h3 id="331-watch中观察数据">3.3.1 Watch中观察数据</h3>
+<p>Watch中点“+”,然后点击回车即可，看到对应数据的值。<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204022363-1168624898.jpg.png" alt="" loading="lazy"></p>
+<h3 id="332-console中观察数据">3.3.2 Console中观察数据</h3>
+<p>F12选择浏览器Console窗口，输入需要观察的变量名，点击回车，即可看到其对应值。<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204032091-1371851328.jpg.png" alt="" loading="lazy"></p>
+<h2 id="34-输入想要执行的方法">3.4 输入想要执行的方法</h2>
+<p>在断点设置，停止运行后，断点之前的方法可在Console窗口中运行输出。</p>
+<h3 id="341-写一个调试方法output">3.4.1 写一个调试方法output()</h3>
+<figure data-type="image" tabindex="4"><img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204039562-1738580065.jpg.png" alt="" loading="lazy"></figure>
+<h3 id="342-设置断点并运行程序">3.4.2 设置断点并运行程序</h3>
+<p>详见3.1，3.2</p>
+<h3 id="343-执行方法运行程序">3.4.3 执行方法运行程序</h3>
+<p>可观察到执行结果如下。<br>
+<img src="https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204047493-1870546195.jpg.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[折腾小计之怎么有效利用手头的电子设备]]></title>
         <id>https://blog.os0day.cn/post/ztxj001/</id>

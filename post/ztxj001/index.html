@@ -9,7 +9,7 @@
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
 <title>折腾小计之怎么有效利用手头的电子设备 | OS0day</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/favicon.ico?v=1645373603354">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/favicon.ico?v=1645375811996">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/media/fonts/font-awesome.css">
 <link
@@ -638,6 +638,27 @@ Windows10或者(windows11)在都是有这个<strong>连接</strong>的菜单选�
 </div>
             
             
+  
+    
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ec237b7627f4387908a2',
+    clientSecret: 'eca59433639ce91a3bd97a5198949355c2e4b374',
+    repo: 'blogGittalk',
+    owner: 'OS0day',
+    admin: ['OS0day'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+    
+    
   
 
           </div>

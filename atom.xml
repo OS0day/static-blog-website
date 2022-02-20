@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.os0day.cn</id>
     <title>OS0day</title>
-    <updated>2022-02-17T15:47:55.006Z</updated>
+    <updated>2022-02-20T15:59:58.962Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.os0day.cn"/>
     <link rel="self" href="https://blog.os0day.cn/atom.xml"/>
@@ -11,12 +11,14 @@
     <icon>https://blog.os0day.cn/favicon.ico</icon>
     <rights>All rights reserved 2022, OS0day</rights>
     <entry>
-        <title type="html"><![CDATA[前端之Webstorm常用快捷键(Updating)]]></title>
+        <title type="html"><![CDATA[前端之Webstorm的使用(Updating)]]></title>
         <id>https://blog.os0day.cn/post/Web001/</id>
         <link href="https://blog.os0day.cn/post/Web001/">
         </link>
         <updated>2022-02-17T15:44:38.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-Html">1. ctrl + shift + n: 打开工程中的文件，目的是打开当前工程下任意目录的文件。
+        <content type="html"><![CDATA[<h1 id="webstorm使用整理">Webstorm使用整理</h1>
+<h2 id="webstorm常用快捷键整理">Webstorm常用快捷键整理</h2>
+<pre><code class="language-Html">1. ctrl + shift + n: 打开工程中的文件，目的是打开当前工程下任意目录的文件。
 2. ctrl + j: 输出模板
 3. ctrl + b: 跳到变量申明处
 4. ctrl + alt + T: 围绕包裹代码(包括zencoding的Wrap with Abbreviation)
@@ -40,6 +42,41 @@
 22. 全局搜索 shift + shift
 23. 全局文本搜索 ctrl + shift + f
 24. ctrl + alt + 方向键 '&lt;——' 或者 '——&gt;' 回到之前访问的页面
+</code></pre>
+<h2 id="辅助webstorm解析vue目录结构的脚本">辅助Webstorm解析Vue目录结构的脚本</h2>
+<p><a href="https://blog.csdn.net/crazy_jialin/article/details/106758721">Webstorm那些事 之 识别vue项目@根路径符号_crazy_jialin的博客-CSDN博客</a><br>
+<a href="https://www.jianshu.com/p/5d42c667ee08">jetbrains: webstorm如何识别webpack中的@等alias符号 - 简书 (jianshu.com)</a></p>
+<pre><code class="language-JavaScript">
+//第一种自己配置
+/** 
+ 该配置是给webstorm使用的,方便代码跳转  
+ 比如,@'/views/layout/components/DragBall'  
+ ctrl + 鼠标左键 就可以跳转到代码的实现  
+*/
+const path = require('path')  
+  
+function resolve(dir) {  
+ return path.join(__dirname, '.', dir)  
+}  
+  
+module.exports = {  
+ context: path.resolve(__dirname, './'),  
+ resolve: {  
+ extensions: ['.js', '.vue', '.json'],  
+    alias:  {  
+		 '@': resolve('src'),  
+		      '@views': resolve('src/views'),  
+		      '@comp': resolve('src/components'),  
+		      '@core': resolve('src/core'),  
+		      '@utils': resolve('src/utils')  
+			} 
+		  }
+   }
+
+//第二种 
+const webpackConfig = require('@vue/cli-service/webpack.config.js')  
+module.exports = webpackConfig
+
 </code></pre>
 ]]></content>
     </entry>

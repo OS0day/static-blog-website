@@ -9,7 +9,7 @@
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
 <title>关于 | OS0day</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/favicon.ico?v=1645112859992">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/favicon.ico?v=1645372615028">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/media/css/gemini.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.4/media/fonts/font-awesome.css">
 <link
@@ -1087,7 +1087,9 @@
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://blog.os0day.cn/post/Web001/"" data-c="
-          &lt;pre&gt;&lt;code class=&#34;language-Html&#34;&gt;1. ctrl + shift + n: 打开工程中的文件，目的是打开当前工程下任意目录的文件。
+          &lt;h1 id=&#34;webstorm使用整理&#34;&gt;Webstorm使用整理&lt;/h1&gt;
+&lt;h2 id=&#34;webstorm常用快捷键整理&#34;&gt;Webstorm常用快捷键整理&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Html&#34;&gt;1. ctrl + shift + n: 打开工程中的文件，目的是打开当前工程下任意目录的文件。
 2. ctrl + j: 输出模板
 3. ctrl + b: 跳到变量申明处
 4. ctrl + alt + T: 围绕包裹代码(包括zencoding的Wrap with Abbreviation)
@@ -1112,7 +1114,42 @@
 23. 全局文本搜索 ctrl + shift + f
 24. ctrl + alt + 方向键 &#39;&amp;lt;——&#39; 或者 &#39;——&amp;gt;&#39; 回到之前访问的页面
 &lt;/code&gt;&lt;/pre&gt;
-">前端之Webstorm常用快捷键(Updating)</a>
+&lt;h2 id=&#34;辅助webstorm解析vue目录结构的脚本&#34;&gt;辅助Webstorm解析Vue目录结构的脚本&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/crazy_jialin/article/details/106758721&#34;&gt;Webstorm那些事 之 识别vue项目@根路径符号_crazy_jialin的博客-CSDN博客&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.jianshu.com/p/5d42c667ee08&#34;&gt;jetbrains: webstorm如何识别webpack中的@等alias符号 - 简书 (jianshu.com)&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;
+//第一种自己配置
+/** 
+ 该配置是给webstorm使用的,方便代码跳转  
+ 比如,@&#39;/views/layout/components/DragBall&#39;  
+ ctrl + 鼠标左键 就可以跳转到代码的实现  
+*/
+const path = require(&#39;path&#39;)  
+  
+function resolve(dir) {  
+ return path.join(__dirname, &#39;.&#39;, dir)  
+}  
+  
+module.exports = {  
+ context: path.resolve(__dirname, &#39;./&#39;),  
+ resolve: {  
+ extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],  
+    alias:  {  
+		 &#39;@&#39;: resolve(&#39;src&#39;),  
+		      &#39;@views&#39;: resolve(&#39;src/views&#39;),  
+		      &#39;@comp&#39;: resolve(&#39;src/components&#39;),  
+		      &#39;@core&#39;: resolve(&#39;src/core&#39;),  
+		      &#39;@utils&#39;: resolve(&#39;src/utils&#39;)  
+			} 
+		  }
+   }
+
+//第二种 
+const webpackConfig = require(&#39;@vue/cli-service/webpack.config.js&#39;)  
+module.exports = webpackConfig
+
+&lt;/code&gt;&lt;/pre&gt;
+">前端之Webstorm的使用(Updating)</a>
       </div>
       
       <div class="item">

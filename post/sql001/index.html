@@ -9,30 +9,30 @@
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#000">
 <title>SQL之SQLServer存储过程简单样例(Updating) | OS0day</title>
-<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/favicon.ico?v=1649054520729">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/css/gemini.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/fonts/font-awesome.css">
+<link rel="shortcut icon" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/favicon.ico?v=1654101741877">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/css/gemini.css">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/fonts/font-awesome.css">
 <!-- <link
   href="//fonts.loli.net/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
   rel="stylesheet" type="text/css"> -->
 
-<link href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/hljs/styles/agate.css"
+<link href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/hljs/styles/agate.css"
   rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/styles/main.css">
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/styles/main.css">
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/hljs/highlight.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/velocity-1.5.2/velocity.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/velocity-1.5.2/velocity.ui.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/katex.min.css"
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/jquery.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/hljs/highlight.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/velocity-1.5.2/velocity.min.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/velocity-1.5.2/velocity.ui.min.js"></script>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/katex.min.css"
   integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
 
 
-<script defer src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/katex.min.js"
+<script defer src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/katex.min.js"
   integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/contrib/auto-render.min.js"
+<script defer src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/katex/contrib/auto-render.min.js"
   integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
   onload="renderMathInElement(document.body);"></script>
 
@@ -196,7 +196,7 @@
             
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
-    <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/images/avatar.png"/>
+    <img class="site-author-image right-motion" src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/images/avatar.png"/>
     <p class="site-author-name">OS0day</p>
     
     <div class="site-description right-motion">
@@ -660,7 +660,7 @@ ORDER BY DateCreated DESC
           
             
               <div class="bg-img">
-                <img src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/images/back.jpg" />
+                <img src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/images/back.jpg" />
               </div>
               
                 
@@ -845,8 +845,8 @@ ORDER BY DateCreated DESC
   }
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/css/jquery.fancybox.css" />
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/jquery.fancybox.js"></script>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/css/jquery.fancybox.css" />
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/jquery.fancybox.js"></script>
 
 <script>
   let images = document.querySelectorAll(".section img");
@@ -1174,49 +1174,49 @@ module.exports = webpackConfig
 &lt;h1 id=&#34;控制台&#34;&gt;控制台&lt;/h1&gt;
 &lt;h2 id=&#34;11-添加consolelog指令&#34;&gt;1.1 添加console.log指令&lt;/h2&gt;
 &lt;p&gt;在代码中添加console.log()方法，这里例子输出从数据库读回来的最高最低温，详见如下：&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203915326-1701770661.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203915326-1701770661.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;12-调出界面如下&#34;&gt;1.2 调出界面如下&lt;/h2&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203924871-142682674.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203924871-142682674.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;13-google浏览器的console窗口edge相同&#34;&gt;1.3 Google浏览器的Console窗口（Edge相同）&lt;/h2&gt;
 &lt;p&gt;在Google浏览器中按F12，调出Console窗口如下。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203931024-406784107.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203931024-406784107.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;14-consoleerror输出&#34;&gt;1.4 console.error输出&lt;/h2&gt;
 &lt;p&gt;将代码改成Error输出如下&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203938283-831992557.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203938283-831992557.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;15-浏览器输出&#34;&gt;1.5 浏览器输出&lt;/h2&gt;
 &lt;p&gt;则浏览器的Console输出会变成红色如下。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203945310-2048294668.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203945310-2048294668.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果输出的是一个JS对象或者数组，则需要用JSON.stringify方法将其转换成json数组再输出,如下&lt;br&gt;
 &lt;code&gt;console.log(JSON.stringify(resolve));&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;alert&#34;&gt;alert&lt;/h1&gt;
 &lt;h2 id=&#34;21-alert方法代码&#34;&gt;2.1 alert方法代码&lt;/h2&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203952625-764198498.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616203952625-764198498.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;22-alert提示效果&#34;&gt;2.2 alert提示效果&lt;/h2&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204001962-1112393179.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204001962-1112393179.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;备注：alert方法为阻塞式，点击确定之后，前端代码才会继续运行&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;debuger&#34;&gt;debuger&lt;/h1&gt;
 &lt;h2 id=&#34;31-设置断点&#34;&gt;3.1 设置断点&lt;/h2&gt;
 &lt;p&gt;设置断点debugger如下图&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204009181-1293854393.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204009181-1293854393.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;32-运行代码&#34;&gt;3.2 运行代码&lt;/h2&gt;
 &lt;p&gt;则运行代码之后，代码会自动跳到断点，停止运行如下&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204015565-1060766880.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204015565-1060766880.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;33-输入关心的属性&#34;&gt;3.3 输入关心的属性&lt;/h2&gt;
 &lt;h3 id=&#34;331-watch中观察数据&#34;&gt;3.3.1 Watch中观察数据&lt;/h3&gt;
 &lt;p&gt;Watch中点“+”,然后点击回车即可，看到对应数据的值。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204022363-1168624898.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204022363-1168624898.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;332-console中观察数据&#34;&gt;3.3.2 Console中观察数据&lt;/h3&gt;
 &lt;p&gt;F12选择浏览器Console窗口，输入需要观察的变量名，点击回车，即可看到其对应值。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204032091-1371851328.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204032091-1371851328.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;34-输入想要执行的方法&#34;&gt;3.4 输入想要执行的方法&lt;/h2&gt;
 &lt;p&gt;在断点设置，停止运行后，断点之前的方法可在Console窗口中运行输出。&lt;/p&gt;
 &lt;h3 id=&#34;341-写一个调试方法output&#34;&gt;3.4.1 写一个调试方法output()&lt;/h3&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;4&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204039562-1738580065.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;4&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204039562-1738580065.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;342-设置断点并运行程序&#34;&gt;3.4.2 设置断点并运行程序&lt;/h3&gt;
 &lt;p&gt;详见3.1，3.2&lt;/p&gt;
 &lt;h3 id=&#34;343-执行方法运行程序&#34;&gt;3.4.3 执行方法运行程序&lt;/h3&gt;
 &lt;p&gt;可观察到执行结果如下。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204047493-1870546195.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1606616-20190616204047493-1870546195.jpg.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 ">前端框架Vue调试</a>
       </div>
       
@@ -1228,12 +1228,12 @@ module.exports = webpackConfig
 &lt;h2 id=&#34;rolan&#34;&gt;Rolan&lt;/h2&gt;
 &lt;p&gt;在使用该工具前：&lt;br&gt;
 我的桌面下方的任务栏堆积了一堆软件，这么多的软件放在这里，既没有提高我打开软件的效率，又徒增我办公时候的软件摆放的混乱程度。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220125232722.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220125232722.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 使用后：&lt;br&gt;
 我将常用的软件整理到了一起，这样要用的时候在去选择点击，让任务栏干净清爽多了&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220125234156.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220125234156.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;如果你的手头恰好有个windows10以上的pad如何变成生产力呢&#34;&gt;如果你的手头恰好有个Windows10以上的Pad,如何变成生产力呢&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210155352.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210155352.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 Windows10或者(windows11)在都是有这个&lt;strong&gt;连接&lt;/strong&gt;的菜单选项的。Pad通过该连接模式可以被作为投屏的显示器。而我的Pad正是基于该模式，变成了一个可以触屏和键入代码的扩展设备了。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注意点&lt;br&gt;
@@ -1241,7 +1241,7 @@ Windows10或者(windows11)在都是有这个&lt;strong&gt;连接&lt;/strong&gt;�
 被连接的设备，需要设置一下接收连接即可.&lt;br&gt;
 在主屏幕对扩展出来的屏幕做下调整（系统的显示菜单）.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210160201.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210160201.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 ">折腾小计之怎么有效利用手头的电子设备</a>
       </div>
       
@@ -1251,10 +1251,10 @@ Windows10或者(windows11)在都是有这个&lt;strong&gt;连接&lt;/strong&gt;�
 &lt;p&gt;通过Git管理我实现了个人笔记与知识库的电子化&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;gitee使用小结&#34;&gt;Gitee使用小结&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210115224.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210115224.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 这一年对于Gitee的使用，更多的是在用于对自己的工作笔记还有知识文档的管理，可以说这一年当中对于自身的专业提高记录了很多，总结了很多，但我感觉还是缺少一个东西，那就是对于自己专业能力的检验性的输出--demo、练手项目，还是不太够的，所以，这一年我会调整自己的方向多多加强这个方面的输出，让自己的专业提高可以形成一个不断推动自己向上的能力提升闭环。&lt;/p&gt;
 &lt;h2 id=&#34;github使用小结&#34;&gt;GitHub使用小结&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210115844.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210115844.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 然后与gitee相比较，GitHub的使用就少了些，提交记录是很少的。最近，我深感交流对于能力提升上的重要，所以，今后会开始加强对GitHub的使用，一些检验性的输出也会同步到GitHub上以便和志同道合的道友交流。&lt;/p&gt;
 &lt;h2 id=&#34;为何要使用git仓库来管理自己的输出&#34;&gt;为何要使用Git仓库来管理自己的输出&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1266,10 +1266,10 @@ Windows10或者(windows11)在都是有这个&lt;strong&gt;连接&lt;/strong&gt;�
 &lt;pre&gt;&lt;code class=&#34;language-txt&#34;&gt;git仓库+txt(工作文档)+markdown(知识库)+demo/练手项目+电子资料/视频+工作总结
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;也就是**（理论学习&amp;lt;==&amp;gt;实践）双向模式**，与B站UP主&lt;strong&gt;技术胖&lt;/strong&gt;所讲述的个人学习方法居然是想切合的，至少在现阶段可以证明自己的尝试方向是对的，但总体来说还有很多的不足，还需要在日后当中不断的实践与总结，才能越来越好，争取可以成为独当一面的&lt;strong&gt;技术大牛&lt;/strong&gt;。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210153135.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220210153135.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;构建一个交流地方&#34;&gt;构建一个交流地方&lt;/h2&gt;
 &lt;p&gt;最近深感作为一名程序员，一名设计行业的工作者，交流对于我们自身的专业能力以及开阔自己的眼界是多么的重要，于是，我就创建了群聊，用于交流与相互学习，相当于一间互联网中的小茶馆，欢迎各位入座品茶☕&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220213011207.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/Pasted%20image%2020220213011207.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 ">折腾小记之Git仓库的使用</a>
       </div>
       
@@ -1281,7 +1281,7 @@ Windows10或者(windows11)在都是有这个&lt;strong&gt;连接&lt;/strong&gt;�
 &lt;p&gt;关于动态规划的资料很多，官方的定义是&lt;strong&gt;指把多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解&lt;/strong&gt;。概念中的&lt;strong&gt;各阶段之间的关系&lt;/strong&gt;，其实指的就是&lt;strong&gt;状态转移方程&lt;/strong&gt;。很多人觉得DP难（下文统称动态规划为DP），根本原因是因为&lt;strong&gt;DP跟一些固定形式的算法不同&lt;/strong&gt;（比如DFS、二分法、KMP），它没有实际的步骤规定第一步、第二步来做什么，所以准确来说，&lt;strong&gt;DP其实是一种解决问题的思想&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;这种思想的本质是：&lt;strong&gt;一个规模比较大的问题&lt;/strong&gt;（可以用两三个参数表示的问题），可以&lt;strong&gt;通过若干规模较小的问题的结果来得到&lt;/strong&gt;的（通常会寻求到一些特殊的计算逻辑，如求最值等），如下图所示，一个大规模的问题由若干个子问题组成。&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/guimo.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/guimo.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;那么我们应该如何通过子问题去得到大规模问题呢？这就用到了&lt;strong&gt;状态转移方程&lt;/strong&gt;（上面有介绍状态转移方程哦，不懂的请往上翻哦），我们一般看到的状态转移方程，基本都是这样：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;opt ：指代特殊的计算逻辑，通常为 max or min。
 
@@ -1340,7 +1340,7 @@ dp[i][j] = opt(dp[i-1][j] + xi, dp[i][j-1] + yj, ...)
 &lt;p&gt;上 n 阶台阶，到达第n阶的方法总数就是到第 (n-1) 阶和第 (n-2) 阶的方法数之和。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/moxing.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/moxing.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;&#34;&gt;&lt;a href=&#34;#_04%E3%80%81go%E8%AF%AD%E8%A8%80%E7%A4%BA%E4%BE%8B&#34;&gt;#&lt;/a&gt; 04、GO语言示例&lt;/h2&gt;
 &lt;p&gt;根据以上分析，可以得到代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;func climbStairs(n int) int {
@@ -1387,7 +1387,7 @@ func climbStairs(number int) int {
 &lt;p&gt;该文章转载自&lt;a href=&#34;https://blog.gd1214b.icu/post/F2_C5EVQh/&#34; title=&#34;解决Gridea同步失败的问题&#34;&gt;https://blog.gd1214b.icu/post/F2_C5EVQh/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;由于众所周知的原因，GitHub在中国大陆地区受到的干扰严重，大部分情况下根本无法连接，这也导致Gridea的同步失败问题。&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623391923562.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623391923562.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
 &lt;p&gt;通常的解决方案是通过代理服务器连接，但由于大部分的代理软件（如v2rayN等），只能更改系统的代理设置，像Gridea这些不遵守系统代理设置的软件，无法通过代理服务器连接。&lt;br&gt;
 下面介绍一种本人亲测有效的方法, 这种方法的基本原理是用GitHub Desktop将Gridea生成的网页源代码手动push到GitHub上。&lt;/p&gt;
@@ -1400,27 +1400,27 @@ func climbStairs(number int) int {
 &lt;h2 id=&#34;第三步-登陆github账号&#34;&gt;第三步 登陆GitHub账号&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;点击 Sign into GitHub.com&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481745688.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481745688.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
 &lt;li&gt;在浏览器里登陆你的GitHub账号&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481982934.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623481982934.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;第四步-清空gridea-配置目录下ouput文件夹里的所有内容&#34;&gt;第四步 清空Gridea 配置目录下ouput文件夹里的所有内容&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;需要清空ouput文件夹里的所有内容的原因是GitHub Desktop无法克隆仓库到非空文件夹中，这一步不会影响你的博客数据。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;注意output文件夹不要删除&lt;/strong&gt;&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482115749.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482115749.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;第五步-在github-desktop中克隆你的博客仓库&#34;&gt;第五步 在GitHub Desktop中克隆你的博客仓库&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482247255.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;p&gt;&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482247255.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 注意目录要选择Gridea 配置目录下ouput文件夹&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482322654.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482322654.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;第六步-同步gridea&#34;&gt;第六步 同步Gridea&lt;/h2&gt;
 &lt;p&gt;在Gridea中依次点击 远程 &amp;gt; 检测远程连接 &amp;gt; 同步&lt;br&gt;
 这一步无所谓是否同步成功.&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482746893.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482746893.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;第七步-同步到github上&#34;&gt;第七步 同步到GitHub上&lt;/h2&gt;
 &lt;p&gt;在GitHub Desktop 中点击 Pushu origin&lt;br&gt;
-&lt;img src=&#34;https://cdn.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482930640.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://fastly.jsdelivr.net/gh/OS0day/MyImagesBed@latest/images/1623482930640.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
 等候完成即可。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;根据评论区中某匿名网友的提醒，有change files的话需要先点击左下角的Commit，才会出现第七步截图里的push origin。&lt;/p&gt;
@@ -2126,11 +2126,11 @@ func ReturnResult(num1, num2 int) (int, [12]string) {
   })
 
 </script>
-<script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/motion.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/motion.js"></script>
 
 
   <script
-    src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/smooth-scroll-16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
+    src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/smooth-scroll-16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
   <script>
     var scroll = new SmoothScroll('a[href*="#"]', {
       speed: 200
@@ -2142,7 +2142,7 @@ func ReturnResult(num1, num2 int) (int, [12]string) {
 <script src="/media/js/mouse/love.js"></script>
 
 
-  <script src="https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/cool.js"></script>
+  <script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/js/cool.js"></script>
 
 
 

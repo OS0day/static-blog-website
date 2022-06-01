@@ -2063,7 +2063,7 @@ p > code {
       }
     @font-face {
       font-family: 'FiraCode-Medium';
-      src: url('https://cdn.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/fonts/FiraCode-Medium.ttf');
+      src: url('https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.5/media/fonts/FiraCode-Medium.ttf');
     }
     * {
         font-family: 'FiraCode-Medium';
@@ -2133,6 +2133,15 @@ p > code {
     .nav-item:hover {
       background: #f9f9f97f;
       color: rgba(0, 0, 0, 0.98);
+    }.site-author-image {
+      border-radius: 50%;
+    }
+    .site-author-image:hover {
+      transform: rotate(666turn);
+      transition-delay: 1s;
+      transition-property: all;
+      transition-duration: 59s;
+      transition-timing-function: cubic-bezier(.34,0,.84,1);
     }.markdownIt-TOC a {
       color: #343a40;
       border-bottom-color: #343a40;

@@ -2063,7 +2063,7 @@ p > code {
       }
     @font-face {
       font-family: 'FiraCode-Medium';
-      src: url('https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.10/media/fonts/FiraCode-Medium.ttf');
+      src: url('https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/fonts/FiraCode-Medium.ttf');
     }
     * {
         font-family: 'FiraCode-Medium';

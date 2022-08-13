@@ -2048,17 +2048,22 @@ p > code {
     margin-bottom: 10px;
   }
 }
-.bg-color .bg-color {
+
+    @media (max-width: 767px) {
+      .bg-img img {
+        display: none;
+      }
+    }.bg-color .bg-color {
       background: transparent !important;
     }body {
-      background-color: #f8f9fa;
+      background-color: #f9f9f97f !important;
     }.header {
-        width: Mist 85%;
+        width: Mist 100%;
         margin: 0 auto;
       }
 
       .main-continer {
-        width: Mist 85%;
+        width: Mist 100%;
         margin: 0 auto;
       }
     @font-face {
@@ -2118,20 +2123,19 @@ p > code {
     .next-md-body a:hover, .friends-box a:hover {
       color: #845ef7;
       border-bottom-color: #845ef7;
-    }
-    .nav-toggle .line {
-      background-color:  !important;
+    }.nav-toggle .line {
+      background-color: #e9ecef !important;
     }
       .nav-item a {
         color:  #555;
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #f9f9f97f;
+      background: #4dabf77f;
     }
 
     .nav-item:hover {
-      background: #f9f9f97f;
+      background: #4dabf77f;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2167,7 +2171,7 @@ p > code {
       color: #343a40;
       border-bottom-color: #343a40;
     }.bg-color {
-      background-color: #ffffff7f;
+      background-color: #f8f9fa7f;
     }
     .gemini .blog-header, .gemini .sidebar-wrapper, .gemini .article-wrapper, .gemini .post, .gemini .page, .gemini .section, .gemini .section-box, .gemini .sidebar-box, .gemini .friends-section {
       border-radius: 10pxpx;
@@ -2176,19 +2180,19 @@ p > code {
       border-radius: 10pxpx;
     }
     .site-meta {
-      background: #000 !important;
+      background: #fff !important;
     }
     .head-top-line {
-      background: #000;
+      background: #fff;
     }
     .brand {
   
     }
     .main-title, .brand {
-      color: #FFF !important;
+      color: #555 !important;
     }
     .mist .site-title i {
-      background: #FFFFFF7f;
+      background: #5555557f;
     }.bg-img img {
         filter: blur(50px)
       }body {

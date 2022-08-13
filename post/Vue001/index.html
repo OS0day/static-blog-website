@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
-<meta name="theme-color" content="#000">
+<meta name="theme-color" content="#fff">
 <title>前端框架Vue调试 | OS0day</title>
-<link rel="shortcut icon" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/favicon.ico?v=1660281482507">
+<link rel="shortcut icon" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/favicon.ico?v=1660359690129">
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/css/pisces.css">
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/fonts/font-awesome.css">
 <!-- <link
@@ -183,18 +183,9 @@
   
     <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
       
-        <div class="post-list-sidebar">
-          <div class="sidebar-title">
-            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
-            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
-          </div>
-        </div>
-      
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/images/avatar.png"/>
@@ -254,226 +245,6 @@
 
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#vue%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E8%B0%83%E8%AF%95">Vue前端框架调试</a></li>
-<li><a href="#%E6%8E%A7%E5%88%B6%E5%8F%B0">控制台</a>
-<ul>
-<li><a href="#11-%E6%B7%BB%E5%8A%A0consolelog%E6%8C%87%E4%BB%A4">1.1 添加console.log指令</a></li>
-<li><a href="#12-%E8%B0%83%E5%87%BA%E7%95%8C%E9%9D%A2%E5%A6%82%E4%B8%8B">1.2 调出界面如下</a></li>
-<li><a href="#13-google%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84console%E7%AA%97%E5%8F%A3edge%E7%9B%B8%E5%90%8C">1.3 Google浏览器的Console窗口（Edge相同）</a></li>
-<li><a href="#14-consoleerror%E8%BE%93%E5%87%BA">1.4 console.error输出</a></li>
-<li><a href="#15-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%87%BA">1.5 浏览器输出</a></li>
-</ul>
-</li>
-<li><a href="#alert">alert</a>
-<ul>
-<li><a href="#21-alert%E6%96%B9%E6%B3%95%E4%BB%A3%E7%A0%81">2.1 alert方法代码</a></li>
-<li><a href="#22-alert%E6%8F%90%E7%A4%BA%E6%95%88%E6%9E%9C">2.2 alert提示效果</a></li>
-</ul>
-</li>
-<li><a href="#debuger">debuger</a>
-<ul>
-<li><a href="#31-%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9">3.1 设置断点</a></li>
-<li><a href="#32-%E8%BF%90%E8%A1%8C%E4%BB%A3%E7%A0%81">3.2 运行代码</a></li>
-<li><a href="#33-%E8%BE%93%E5%85%A5%E5%85%B3%E5%BF%83%E7%9A%84%E5%B1%9E%E6%80%A7">3.3 输入关心的属性</a>
-<ul>
-<li><a href="#331-watch%E4%B8%AD%E8%A7%82%E5%AF%9F%E6%95%B0%E6%8D%AE">3.3.1 Watch中观察数据</a></li>
-<li><a href="#332-console%E4%B8%AD%E8%A7%82%E5%AF%9F%E6%95%B0%E6%8D%AE">3.3.2 Console中观察数据</a></li>
-</ul>
-</li>
-<li><a href="#34-%E8%BE%93%E5%85%A5%E6%83%B3%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95">3.4 输入想要执行的方法</a>
-<ul>
-<li><a href="#341-%E5%86%99%E4%B8%80%E4%B8%AA%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95output">3.4.1 写一个调试方法output()</a></li>
-<li><a href="#342-%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9%E5%B9%B6%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F">3.4.2 设置断点并运行程序</a></li>
-<li><a href="#343-%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F">3.4.3 执行方法运行程序</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
-      }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
-    });
-  }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
-          
         
       </div>
     </div>
@@ -733,7 +504,7 @@
     <span class="post-meta-divider">|</span>
     <span id="busuanzi_container_site_uv">访客数:<span id="busuanzi_value_site_uv"></span> 人</span>
     <script>
-      BirthDay = new Date('');
+      BirthDay = new Date('2022-01-01');
       if (BirthDay.getTime()) {
         function runTime() {
           str = "";

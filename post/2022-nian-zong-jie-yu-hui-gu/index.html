@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="欢迎来到这里，这是属于我自己的天地，希望你能够有所收获，四处游历的冒险者！">
 <meta name="theme-color" content="#fff">
-<title>OS0day</title>
+<title>2022年总结与回顾 | OS0day</title>
 <link rel="shortcut icon" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/favicon.ico?v=1670148090447">
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/css/pisces.css">
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/fonts/font-awesome.css">
@@ -41,6 +41,8 @@
 
 
 
+  <meta name="description" content="2022年总结与回顾" />
+  <meta name="keywords" content="年终总结" />
 </head>
 
 <body>
@@ -173,10 +175,17 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  pisces">
+      class="section-layout pisces ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+      <div class="sidebar-body pisces" id="sidebar_body">
+        
+          
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/images/avatar.png"/>
@@ -236,98 +245,227 @@
 
 
 </div>
+        
+      </div>
+    </div>
+  
 </div>
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'pisces';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    jQuery.Velocity(hideElement, 'stop');
+    jQuery.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        jQuery.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
       }
-    });
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          Gridea
-          <small class="language" data-lan="tag">标签</small>
-        </h2>
-      </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://blog.os0day.cn/post/gridea001/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              01-29
-              <small>关于Gridea同步失败的解决方案（亲测目前有效）</small>
-            </h1>
-          </div>
-        </div>
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://blog.os0day.cn/post/2022-nian-zong-jie-yu-hui-gu/"> 2022年总结与回顾 </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2022-12-04 18:00:46">2022-12-04</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">标签:</span>
+       
+      <a href="https://blog.os0day.cn/tag/FOKekucWF/">
+        <span>年终总结</span>
       </a>
+       
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span
+        >7<span class="language" data-lan="minute"
+          >分钟</span
+        ></span
+      >
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span
+        >2071<span class="pc-show language" data-lan="words"
+          >字数</span
+        ></span
+      >
+    </span>
+    
+  </div>
+</section>
+
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="一-对上一年的回顾与总结">一、对上一年的回顾与总结</h2>
+<p>许久未提笔，哦不，是许久未再码字了，提笔忘字对我来说可能已经是常态了，也就敲敲键盘还可以输出文字，一来这一年所在单位的工作任务比较多，二来加上转岗要学习岗位的知识以及快速适应开发节奏，花费了蛮多时间和精力的，在这一年也是感受到了一波作为IT工作的辛苦，这样的辛苦是体力与脑力劳动相关结合的累，但整体情况还是符合预期的工作生活。就是精力的消磨，以及自我的PUA、CPU导致地自我内耗让自己这一年当中都是处于一个比较焦虑的状态，也可能是比较习惯自我独处，也很少去和别人说自己面临的困境与烦恼，很多时候就慢慢去消化掉自己的负面情绪。好在没有喜欢独处到那种魔怔的地步，还是会去找朋友说说话，相互了解一下近况，有时候了解完会发现大家的生活某种程度上是那么相似。<br>
+1. <strong>对未来或者职业发展的迷茫</strong>。<br>
+2. <strong>对婚姻或者是对当代恋爱观的质疑</strong>。<br>
+3. <strong>计划与突发状态两者的相互干扰后的摆烂</strong>。</p>
+<h3 id="1-对未来或者职业发展的迷茫">1.  对未来或者职业发展的迷茫</h3>
+<p>还是要老话重谈一下，我是毕业于计算机科学与技术软件工程方向专业，身边的同学大部分都是从事IT工作的，而这个IT行业在我们毕业之前就已经在盛传所谓的35岁的职业危机，当然35岁的危机并不只是存在这个IT行业，而是存在于各行各业，加上疫情已经持续了三年左右的时间，提早将经济泡沫刺破，各行各业开始在做面对经济下行的战略处理，互联网时代下，首先暴露在人民群众视野下的便是头部的互联网公司或者科技公司了，hc缩减、裁员，各种感叹找工作难的帖子到处都有，肉眼可见的各种负面新闻。就业形势不好，实体经济也很萎靡，总之，又到了几年一次轮回的经济危机时期，一切都是那么的令人担忧。以往，还是孩童的时候，对电视新闻里、大人嘴里说道的经济危机总是不知为何物，等当自己去经历了才恍然大悟。<br>
+面对这样的经济形势，我个人是觉得脚踏实地维稳才是根本，当然，心里是这样想的，但还是经常被焦虑的情绪或者各方自媒体营造的焦虑氛围所笼罩。说来也奇怪，当我放下手机之后，焦虑也就随之散去了，似乎所谓的危机并不存在，每日仍旧是工作、吃饭、学习、看看娱乐番剧，生活并没有什么变化，不经就有疑惑上心头，真的是我在焦虑么？不知道，反正生活仍旧得继续，不管是焦虑还是不焦虑。</p>
+<h3 id="2-对婚姻或者是对当代恋爱观的质疑">2. 对婚姻或者是对当代恋爱观的质疑</h3>
+<p>不知道为何，我从毕业之后，就觉得“<strong>老许，你要老婆不要</strong>？”，这样质朴的年代已经离我们远去了，时常会在互联网上看到很多刷新与冲击着我们朴素价值观的事情，其中最为典型的便是关于爱情的。就拿最近的“<strong>为爱冲锋的勇士</strong>”、“<strong>张家界的新娘</strong>”，等等，太多了，不清楚是媒体镜头的放大效应的加持才让人觉得这个时代的爱情观变了，还是怎么了，而在看身边的那些已经结婚的同事、学长学姐、朋友，他们的婚姻生活又是那么的快乐美满。所以，互联网与现实的反差，就很这样让人迷惑，同时，似乎也造就了这个时代的年轻人当中像我这样一类的群体对婚姻或者恋爱的观念是这样的<strong>相信有美满幸福的爱情，但不相信会降临在自己身上</strong>，这样一种悲观的爱情观念。有段时间，我一直觉得这是少数人的想法，毕竟这是消极的想法怎么可能会有很多人这样想呢？直到我看到每况愈下的结婚率与生育率，才不得不相信与我想的是相反的，才是现实的样子。<strong>但还是请大胆地去相信！</strong></p>
+<h3 id="3-计划与突发状态两者的相互干扰后的摆烂">3. 计划与突发状态两者的相互干扰后的摆烂</h3>
+<p>与其说是摆烂，现在想想，到觉得是精力消磨之后，短时间内无法恢复到满状态的劳累，说到底还是自己没有做好工作与生活的平衡，还是像在校园的时候一样，觉得计划的干扰因素是很少的，自己可以将大量的时间投入到自己所计划的事情当中去，实际上这样的想法是幼稚且过于理想化的，工作之后的时间，变成的碎片化的，大段大段的时间投入简直可以说是种奢侈的享受。计划还是得结合实际来，再务实些，产出再高些，越高越好才是最实在的。</p>
+<h2 id="二-回顾上一年的计划">二、回顾上一年的计划</h2>
+<p>上一年当中，有临时起意的，也有信誓旦旦的列下的计划项，但大抵上完成度还是不太好看</p>
+<ol>
+<li><strong>成为软件全栈开发</strong><br>
+这个勉强算达到了吧，但停留的层次还是比较稚嫩的，前端开发可以适应团队的开发需要，可以比较快的去理解其他人写的代码与思路，可以重构一整个功能块的代码，就是理论知识上还是存在很多的不足，理论很多，实践还是太少，demo还是要继续多写写才行。<br>
+后端的技术，原先想往架构设计学习，但是看了很多市面上所谓的架构设计理念后，发现并没有像自己想象的那样简单，架构的设计还是需要结合具体的业务场景来看，才能更好地理解架构设计方案设计的最初目的是为了解决哪些具体的问题，而非为了架构而架构。</li>
+<li><strong>经典算法的学习</strong><br>
+这个很惭愧没咋练，也就平时，看看例题，看看别人的写的文档，或者，看看经典的案例书籍，很少去花上好几个小时去写题目，不知道为撒感觉花好几个小时去写题目感觉很奢侈，以前，倒不会这么想，说到底还是闲暇的时间确实没有在校的时候多了，校园真是回不去的象牙塔。</li>
+</ol>
+<h2 id="三-对未来的期许">三、对未来的期许</h2>
+<p>工作为了撒？不就是为了更好的生活吗？！哈哈哈，可是何为更好的生活呢？这概念太笼统了，看不见也摸不着，不妨在具象化些，具体到详情的事物上。<br>
+1. 有空考个驾照，弥补一下在校没去考的遗憾，或许，以后也能派上用场<br>
+2. 继续提升自己的专业知识：全栈开发可以逐渐的在深入学习下去，基础的练习也要继续跟上，正所谓，<strong>学而不思则罔， 思而不学则殆</strong>。<br>
+3. 好好学一下剪辑，嗯，自己发的东西没啥人看，就该好好反思一下自己，可能是长得丑，还是就是不会整活啦。</p>
+<p>一时间就先想到这，嗯，就酱紫啦，这会已经到饭点啦（17:46）,未来还请继续加油，就像那首歌唱的那样“<strong>只要全力以赴就无所谓失败，转眼间，一切都已改变，新的起点新的世界就在眼前</strong> ”，再一次奔跑起来！各位，<strong>共勉</strong>！</p>
+<!-- more -->
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      OS0day
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://blog.os0day.cn/post/2022-nian-zong-jie-yu-hui-gu/" title="2022年总结与回顾">https://blog.os0day.cn/post/2022-nian-zong-jie-yu-hui-gu/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://blog.os0day.cn/tag/FOKekucWF/"># 年终总结</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
       
+    </div>
+    <div class="nav-next">
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+        <a class="nav-pc-next" title="前端之Webstorm的使用(Updating)" href="https://blog.os0day.cn/post/Web001/">前端之Webstorm的使用(Updating)</a>
+        <a class="nav-mobile-next" title="前端之Webstorm的使用(Updating)" href="https://blog.os0day.cn/post/Web001/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+            
+  
+    
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'ec237b7627f4387908a2',
+    clientSecret: 'eca59433639ce91a3bd97a5198949355c2e4b374',
+    repo: 'blogGittalk',
+    owner: 'OS0day',
+    admin: ['OS0day'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+    
+    
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -571,6 +709,223 @@
     parent.insertBefore(aelem, next);
   });
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip"> </p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        jQuery.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        jQuery.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        jQuery.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        jQuery.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      jQuery.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      jQuery.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -1667,7 +2022,6 @@ func ReturnResult(num1, num2 int) (int, [12]string) {
 
 
   <script src="https://fastly.jsdelivr.net/gh/OS0day/themeNextCDN@v0.0.11/media/js/cool.js"></script>
-
 
 
 
